@@ -5,6 +5,8 @@ namespace SpotiWish_back.Model
 {
     public class Album
     {
+        public int Id { get; set; }
+        
         [Required]
         public string Name { get; set; }
 
@@ -24,6 +26,6 @@ namespace SpotiWish_back.Model
         public Artist Artists { get; set; }
         
         [Required] 
-        public music[] Musics { get; set; }
+        public Music[] Musics { get; set; }
     }
 }

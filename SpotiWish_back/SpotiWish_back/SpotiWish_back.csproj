@@ -5,12 +5,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.*">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.*" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Configuration" />
-      <Folder Include="Data" />
       <Folder Include="Middel" />
     </ItemGroup>
 

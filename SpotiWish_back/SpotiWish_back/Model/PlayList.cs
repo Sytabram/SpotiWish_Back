@@ -5,6 +5,8 @@ namespace SpotiWish_back.Model
 {
     public class PlayList
     {
+        public int Id { get; set; }
+        
         [Required]
         public string Name { get; set; }
 
@@ -15,7 +17,7 @@ namespace SpotiWish_back.Model
         public DateTime CreatDate { get; set; }
         
         [Required] 
-        public music[] Musics { get; set; }
+        public Music[] Musics { get; set; }
         
         [Required] 
         public String Descrition { get; set; }

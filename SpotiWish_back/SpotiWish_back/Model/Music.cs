@@ -3,8 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SpotiWish_back.Model
 {
-    public class music
+    public class Music
     {
+        public int Id { get; set; }
+        
         [Required]
         public string Name { get; set; }
         
