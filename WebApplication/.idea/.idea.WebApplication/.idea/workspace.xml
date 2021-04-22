@@ -4,10 +4,35 @@
     <projectFile>WebApplication.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="589beab1-9b2d-44c3-af08-5b397d3100eb" name="Default Changelist" comment="first one">
-      <change afterPath="$PROJECT_DIR$/Controllers/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication.csproj" afterDir="false" />
+    <list default="true" id="589beab1-9b2d-44c3-af08-5b397d3100eb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication/.idea/projectSettingsUpdater.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/WeatherForecastController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeatherForecast.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/WebApplication.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/WebApplication.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/WebApplication.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/WebApplication.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/WebApplication.csprojAssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/WebApplication.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/WebApplication.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/WebApplication.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +54,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -90,7 +112,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619078549359</updated>
-      <workItem from="1619078568087" duration="547000" />
+      <workItem from="1619078568087" duration="938000" />
     </task>
     <task id="LOCAL-00001" summary="first one">
       <created>1619078663098</created>
@@ -99,7 +121,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619078663098</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test">
+      <created>1619079139461</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619079139461</updated>
+    </task>
+    <task id="LOCAL-00003" summary="clean project">
+      <created>1619079310932</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619079310932</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +157,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="first one" />
-    <option name="LAST_COMMIT_MESSAGE" value="first one" />
+    <MESSAGE value="test" />
+    <MESSAGE value="clean project" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean project" />
   </component>
 </project>
