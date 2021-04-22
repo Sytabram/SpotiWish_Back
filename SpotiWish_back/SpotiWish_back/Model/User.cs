@@ -17,7 +17,7 @@ namespace SpotiWish_back.Model
         public byte[] Thumbnail { get; set; }
 
         [Required] 
-        public music[] Playlist { get; set; }
+        public PlayList[] Playlists { get; set; }
         
         [Required] 
         public int Subscription { get; set; }

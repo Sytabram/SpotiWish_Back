@@ -21,7 +21,7 @@ namespace SpotiWish_back.Model
         public int YearReleased { get; set; }
 
         [Required] 
-        public Artist[] Artists { get; set; }
+        public Artist Artists { get; set; }
         
         [Required] 
         public music[] Musics { get; set; }
