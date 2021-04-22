@@ -30,6 +30,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name : Test
-        working-directory : ./tests
+        working-directory : ./SpotiWish_Back/SpotiWish_back
+
         run : dotnet test
 
