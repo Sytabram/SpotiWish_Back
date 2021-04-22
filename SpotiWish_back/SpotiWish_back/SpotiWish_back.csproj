@@ -5,7 +5,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Configuration" />
+      <Folder Include="Data" />
+      <Folder Include="Middel" />
     </ItemGroup>
 
 </Project>
