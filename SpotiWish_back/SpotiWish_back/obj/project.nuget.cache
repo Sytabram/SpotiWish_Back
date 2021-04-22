@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7TFEgULgucJy9E4PymQCVKmlOA8mJRypIqrewOtbdm6NYbjtLdMi1Pac+nk5lcn1I1CA86Dkw/eNTzShs+0HgA==",
+  "dgSpecHash": "uCYu0eAt3S/BfEkj4Ip+HgNS01iZGYCToTU4ICGGo/OsZdiv+ilQRZEV5JugU4xYtKuWHXcMFhVC3pg34thcyQ==",
   "success": true,
   "projectFilePath": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\noezw\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\noezw\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\noezw\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\noezw\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -42,6 +43,7 @@
     "C:\\Users\\noezw\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\noezw\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "C:\\Users\\noezw\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\noezw\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\noezw\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
   "logs": []
