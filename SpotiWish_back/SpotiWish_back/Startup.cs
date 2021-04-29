@@ -29,7 +29,9 @@ namespace SpotiWish_back
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
             services.AddDbContext<SpotiWishDataContext>(x => x.UseSqlite(@"Data Source=SpotiWish.db;"));
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SpotiWish_back", Version = "v1"});
