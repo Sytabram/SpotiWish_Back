@@ -18,6 +18,8 @@
       <Folder Include="Configuration" />
       <Folder Include="Middel" />
       <Folder Include="Migrations" />
+      <Folder Include="Repositories\Interface" />
+      <Folder Include="Services\Interface" />
     </ItemGroup>
 
 </Project>
