@@ -8,6 +8,7 @@ namespace SpotiWish_test
         [TestMethod]
         public void TestMethod1()
         {
+            
         }
     }
 }
