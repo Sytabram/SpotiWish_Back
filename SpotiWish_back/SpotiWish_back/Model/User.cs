@@ -43,6 +43,16 @@ namespace SpotiWish_back.Model
         public bool IsAdmin { get; set; }
     }
 
+    public class CreatUserDTO
+    {
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        
+        public string Email { get; set; }
+        
+        public string Password { get; set; }
+    }
     public class SimpleUserDTO
     {
         public int Id { get; set; }

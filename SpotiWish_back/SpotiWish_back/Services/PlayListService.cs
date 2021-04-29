@@ -14,9 +14,35 @@ namespace SpotiWish_back.Services
         {
             _playListRepository = playListRepository;
         }
+
+        public Task<PlayList> AddCategory(PlayListDTO newPLayList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<int> DeleteCategory(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task<List<PlayList>> GetAllPlayList()
         {
             return  await _playListRepository.GetAllPlayList();
+        }
+
+        public Task<PlayList> GetSinglePlayList(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<PlayListDTO> UpdatePlayList(int id, PlayListDTO model)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<bool> SetThumbnailPlayList(int id, byte[] thumbnail)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
