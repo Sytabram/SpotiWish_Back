@@ -27,4 +27,35 @@ namespace SpotiWish_back.Model
         public Artist[] Artists { get; set; }
         
     }
+    public class PlayListDTO{
+
+        public int Id { get; set; }
+        
+
+        public string Name { get; set; }
+
+         
+        public byte[] Thumbnail { get; set; }
+        
+         
+        public DateTime CreatDate { get; set; }
+        
+         
+        public SimpleMusicDTO[] Musics { get; set; }
+        
+         
+        public string Descrition { get; set; }
+
+         
+        public Artist[] Artists { get; set; }
+    }
+
+    public class SimplePlayListDTO
+    {
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        
+        public byte[] Thumbnail { get; set; }
+    }
 }

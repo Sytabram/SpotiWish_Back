@@ -15,6 +15,20 @@
           "lib/netstandard2.0/AutoMapper.dll": {}
         }
       },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.1": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "[10.1.1, 11.0.0)",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.0.0",
+          "Microsoft.Extensions.Options": "3.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -544,6 +558,19 @@
         "lib/net461/AutoMapper.xml",
         "lib/netstandard2.0/AutoMapper.dll",
         "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.1": {
+      "sha512": "xSWoVzOipuDU4PeZcUfaZQ+xqXU8QmGv5jrdlxt3MYm9xaOmrefqcfzGQ3SQ+D+8wfBa/ZwSuL0qKOVj080inA==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/8.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -1420,34 +1447,37 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "AutoMapper >= 10.1.1",
+      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
       "Microsoft.EntityFrameworkCore.Design >= 3.*",
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.*",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
   "packageFolders": {
-    "/Users/bryan.zweiacker/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\noezw\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj",
+      "projectUniqueName": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
       "projectName": "SpotiWish_back",
-      "projectPath": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj",
-      "packagesPath": "/Users/bryan.zweiacker/.nuget/packages/",
-      "outputPath": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/obj/",
+      "projectPath": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
+      "packagesPath": "C:\\Users\\noezw\\.nuget\\packages\\",
+      "outputPath": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/bryan.zweiacker/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\noezw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1469,6 +1499,10 @@
           "AutoMapper": {
             "target": "Package",
             "version": "[10.1.1, )"
+          },
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "[8.1.1, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -1503,7 +1537,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
