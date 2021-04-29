@@ -17,6 +17,7 @@
     <ItemGroup>
       <Folder Include="Configuration" />
       <Folder Include="Middel" />
+      <Folder Include="Migrations" />
     </ItemGroup>
 
 </Project>

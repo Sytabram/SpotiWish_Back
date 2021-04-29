@@ -5,8 +5,10 @@ namespace SpotiWish_back.Model
 {
     public class Music
     {
+        [Required]
         public int Id { get; set; }
         
+        [StringLength(20)]
         public string Name { get; set; }
         
         public Artist Author { get; set; }
@@ -21,6 +23,7 @@ namespace SpotiWish_back.Model
 
         public Album Album { get; set; }
         
-        public String Style { get; set; }
+        [StringLength(20)]
+        public string Style { get; set; }
     }
 }

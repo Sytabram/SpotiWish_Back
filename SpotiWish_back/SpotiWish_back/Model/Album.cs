@@ -5,8 +5,10 @@ namespace SpotiWish_back.Model
 {
     public class Album
     {
+        [Required]
         public int Id { get; set; }
         
+        [StringLength(20)]
         public string Name { get; set; }
         
         public byte[] Thumbnail { get; set; }
