@@ -17,10 +17,38 @@ namespace SpotiWish_back.Model
         
         public byte[] Thumbnail { get; set; }
         
-        public PlayList[] Playlists { get; set; }
+        public SimplePlayListDTO[] Playlists { get; set; }
         
         public int Subscription { get; set; }
         
         public bool IsAdmin { get; set; }
+    }
+
+    public class UserDTO
+    {
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        
+        public string Email { get; set; }
+        
+        public string Password { get; set; }
+        
+        public byte[] Thumbnail { get; set; }
+        
+        public SimplePlayListDTO[] Playlists { get; set; }
+        
+        public int Subscription { get; set; }
+        
+        public bool IsAdmin { get; set; }
+    }
+
+    public class SimpleUserDTO
+    {
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        
+        public byte[] Thumbnail { get; set; }
     }
 } 

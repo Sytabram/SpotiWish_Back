@@ -19,8 +19,15 @@ namespace SpotiWish_back.Model
         
         public int YearReleased { get; set; }
         
-        public Artist Artists { get; set; }
+        public SimpleArtistDTO Artists { get; set; }
         
-        public Music[] Musics { get; set; }
+        public SimpleMusicDTO[] Musics { get; set; }
+    }
+
+    public class SimpleAlbumDTO
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public byte[] Thumbnail { get; set; }
     }
 }

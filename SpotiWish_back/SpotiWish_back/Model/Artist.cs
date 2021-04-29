@@ -19,4 +19,13 @@ namespace SpotiWish_back.Model
         
         public int TimeOfHeard { get; set; }
     }
+
+    public class SimpleArtistDTO
+    {
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        
+        public byte[] ProfilThumbnail { get; set; }
+    }
 }

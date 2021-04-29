@@ -26,4 +26,13 @@ namespace SpotiWish_back.Model
         [StringLength(20)]
         public string Style { get; set; }
     }
+
+    public class SimpleMusicDTO
+    {
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        
+        public byte[] Thumbnail { get; set; }
+    }
 }
