@@ -1,30 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj": {}
+    "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj": {}
   },
   "projects": {
-    "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj": {
+    "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
+        "projectUniqueName": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj",
         "projectName": "SpotiWish_back",
-        "projectPath": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
-        "packagesPath": "C:\\Users\\noezw\\.nuget\\packages\\",
-        "outputPath": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\obj\\",
+        "projectPath": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj",
+        "packagesPath": "/Users/bryan.zweiacker/.nuget/packages/",
+        "outputPath": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\noezw\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/bryan.zweiacker/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
         }
       }
     }
