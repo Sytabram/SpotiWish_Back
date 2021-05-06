@@ -8,6 +8,36 @@ namespace SpotiWish_back.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "PlayLists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(maxLength: 20, nullable: true),
+                    Thumbnail = table.Column<byte[]>(nullable: true),
+                    CreatDate = table.Column<DateTime>(nullable: false),
+                    Descrition = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayLists", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SimpleArtistDTO",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    ProfilThumbnail = table.Column<byte[]>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SimpleArtistDTO", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -23,29 +53,6 @@ namespace SpotiWish_back.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlayLists",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(maxLength: 20, nullable: true),
-                    Thumbnail = table.Column<byte[]>(nullable: true),
-                    CreatDate = table.Column<DateTime>(nullable: false),
-                    Descrition = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlayLists", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlayLists_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,6 +79,27 @@ namespace SpotiWish_back.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SimplePlayListDTO",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    Thumbnail = table.Column<byte[]>(nullable: true),
+                    UserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SimplePlayListDTO", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SimplePlayListDTO_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Albums",
                 columns: table => new
                 {
@@ -82,15 +110,22 @@ namespace SpotiWish_back.Migrations
                     TotalTime = table.Column<TimeSpan>(nullable: false),
                     TotalHeard = table.Column<int>(nullable: false),
                     YearReleased = table.Column<int>(nullable: false),
-                    ArtistsId = table.Column<int>(nullable: true)
+                    ArtistsId = table.Column<int>(nullable: true),
+                    ArtistId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Albums", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Albums_Artists_ArtistsId",
-                        column: x => x.ArtistsId,
+                        name: "FK_Albums_Artists_ArtistId",
+                        column: x => x.ArtistId,
                         principalTable: "Artists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Albums_SimpleArtistDTO_ArtistsId",
+                        column: x => x.ArtistsId,
+                        principalTable: "SimpleArtistDTO",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -134,6 +169,32 @@ namespace SpotiWish_back.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "SimpleMusicDTO",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    Thumbnail = table.Column<byte[]>(nullable: true),
+                    AlbumId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SimpleMusicDTO", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SimpleMusicDTO_Albums_AlbumId",
+                        column: x => x.AlbumId,
+                        principalTable: "Albums",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Albums_ArtistId",
+                table: "Albums",
+                column: "ArtistId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Albums_ArtistsId",
                 table: "Albums",
@@ -160,8 +221,13 @@ namespace SpotiWish_back.Migrations
                 column: "PlayListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlayLists_UserId",
-                table: "PlayLists",
+                name: "IX_SimpleMusicDTO_AlbumId",
+                table: "SimpleMusicDTO",
+                column: "AlbumId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SimplePlayListDTO_UserId",
+                table: "SimplePlayListDTO",
                 column: "UserId");
         }
 
@@ -171,16 +237,25 @@ namespace SpotiWish_back.Migrations
                 name: "Musics");
 
             migrationBuilder.DropTable(
+                name: "SimpleMusicDTO");
+
+            migrationBuilder.DropTable(
+                name: "SimplePlayListDTO");
+
+            migrationBuilder.DropTable(
                 name: "Albums");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Artists");
 
             migrationBuilder.DropTable(
-                name: "PlayLists");
+                name: "SimpleArtistDTO");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "PlayLists");
         }
     }
 }

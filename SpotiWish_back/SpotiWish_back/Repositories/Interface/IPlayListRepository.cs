@@ -10,7 +10,9 @@ namespace SpotiWish_back.Repositories.Interface
         Task<int> DeletePlaylist(int id);
         Task<List<PlayList>> GetAllPlayList();
         Task<PlayList> GetSinglePlayList(int id);
-        Task<PlayListDTO> UpdatePlayList(int id, PlayListDTO model);
+        Task<PlayList> UpdatePlayList(int id, CRUDPlayListDTO model);
         Task<bool> SetThumbnailPlayList(int id, byte[] thumbnail);
+        Task<byte[]> GetThumbnailPlayList(int id);
+        Task<bool> ExistById(int id);
     }
 }
