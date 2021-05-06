@@ -61,4 +61,28 @@ namespace SpotiWish_back.Model
         
         public byte[] Thumbnail { get; set; }
     }
+
+    public class RegisterUserDTO
+    {
+        [Required]
+        public int Id { get; set; }
+        
+        [StringLength(20)]
+        public string Name { get; set; }
+        
+        [EmailAddress]
+        public string Email { get; set; }
+        
+        public string Password { get; set; }
+
+        public bool IsAdmin { get; set; }
+    }
+
+    public class LoginUserDTO
+    {
+        [StringLength(20)]
+        public string Name { get; set; }
+        
+        public string Password { get; set; }
+    }
 } 
