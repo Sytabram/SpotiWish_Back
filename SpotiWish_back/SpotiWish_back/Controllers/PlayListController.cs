@@ -25,6 +25,15 @@ namespace SpotiWish_back.Controllers
             var playLists = await _playListService.GetAllPlayList();
             return Ok(_mapper.Map<List<PlayList>, List<PlayListDTO>>(playLists));
         }
+
+        [HttpPost("PlayList")]
+        public async Task<IActionResult> CreatPlayList([FromBody] CRUDPlayListDTO playListTocreat)
+        {
+            var modelDB = await _playListService.AddPlaylist(playListTocreat);
+            var modelDTO = _mapper.Map<PlayListDTO>(modelDB);
+            
+            return Created($"playlists/{modelDTO.Id}", modelDTO);
+        }
         //     - GetPlaylistLikedSong à partir de l'user (titre, album, date de sortie, durée)
         //     - GetAll Playlist à partir de l'user (nom de la playlist, vignette, nombre de musique, liste des musiques dedans)
         // crud

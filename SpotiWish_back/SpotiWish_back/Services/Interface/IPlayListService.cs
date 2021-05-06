@@ -6,8 +6,8 @@ namespace SpotiWish_back.Services.Interface
 {
     public interface IPlayListService   
     {
-        Task<PlayList> AddCategory(PlayListDTO newPLayList);
-        Task<int> DeleteCategory(int id);
+        Task<PlayList> AddPlaylist(CRUDPlayListDTO newPLayList);
+        Task<int> DeletePlaylist(int id);
         Task<List<PlayList>> GetAllPlayList();
         Task<PlayList> GetSinglePlayList(int id);
         Task<PlayListDTO> UpdatePlayList(int id, PlayListDTO model);

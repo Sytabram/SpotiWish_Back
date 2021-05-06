@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SpotiWish_back.Data;
+using SpotiWish_back.Services;
+using SpotiWish_back.Services.Interface;
 
 namespace SpotiWish_back
 {
@@ -37,7 +39,7 @@ namespace SpotiWish_back
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SpotiWish_back", Version = "v1"});
             });
-            
+            services.AddTransient<IPlayListService, PlayListService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

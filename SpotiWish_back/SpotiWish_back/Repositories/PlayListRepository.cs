@@ -17,12 +17,17 @@ namespace SpotiWish_back.Repositories
         {
             _context = context;
         }
-        public Task<PlayList> AddCategory(PlayListDTO newPLayList)
+        public async Task<PlayList> AddPlaylist(CRUDPlayListDTO newPLayList)
         {
-            throw new System.NotImplementedException();
+            var model = new PlayList();
+            model.Name = newPLayList.Name;
+            model.Descrition = newPLayList.Descrition;
+            model.CreatDate = newPLayList.CreatDate;
+            _context.PlayLists.Add(model);
+            
+            return model;
         }
-
-        public Task<int> DeleteCategory(int id)
+        public Task<int> DeletePlaylist(int id)
         {
             throw new System.NotImplementedException();
         }

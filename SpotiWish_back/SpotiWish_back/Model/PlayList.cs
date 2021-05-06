@@ -58,4 +58,11 @@ namespace SpotiWish_back.Model
         
         public byte[] Thumbnail { get; set; }
     }
+
+    public class CRUDPlayListDTO
+    {
+        public string Name { get; set; }
+        public DateTime CreatDate { get; set; }
+        public string Descrition { get; set; }
+    }
 }

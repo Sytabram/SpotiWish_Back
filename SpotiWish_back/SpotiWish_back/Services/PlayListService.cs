@@ -15,12 +15,13 @@ namespace SpotiWish_back.Services
             _playListRepository = playListRepository;
         }
 
-        public Task<PlayList> AddCategory(PlayListDTO newPLayList)
+        public async Task<PlayList> AddPlaylist(CRUDPlayListDTO newPLayList)
         {
-            throw new System.NotImplementedException();
+            var modelDb = await _playListRepository.AddPlaylist(newPLayList);
+            return modelDb;
         }
 
-        public Task<int> DeleteCategory(int id)
+        public Task<int> DeletePlaylist(int id)
         {
             throw new System.NotImplementedException();
         }
