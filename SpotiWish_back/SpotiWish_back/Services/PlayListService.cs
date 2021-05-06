@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using SpotiWish_back.Model;
 using SpotiWish_back.Repositories.Interface;
@@ -15,14 +16,18 @@ namespace SpotiWish_back.Services
             _playListRepository = playListRepository;
         }
 
-        public Task<PlayList> AddCategory(PlayListDTO newPLayList)
+        public async Task<PlayList> AddPlaylist(CRUDPlayListDTO newPLayList)
         {
-            throw new System.NotImplementedException();
+            var modelDb = await _playListRepository.AddPlaylist(newPLayList);
+            return modelDb;
         }
 
-        public Task<int> DeleteCategory(int id)
+        public async Task<int> DeletePlaylist(int id)
         {
-            throw new System.NotImplementedException();
+            if(! await _playListRepository.ExistById(id))
+                throw new NullReferenceException("Playlist doesn't exist");
+      
+            return await _playListRepository.DeletePlaylist(id);
         }
 
         public async Task<List<PlayList>> GetAllPlayList()
@@ -30,19 +35,32 @@ namespace SpotiWish_back.Services
             return  await _playListRepository.GetAllPlayList();
         }
 
-        public Task<PlayList> GetSinglePlayList(int id)
+        public async Task<PlayList> GetSinglePlayList(int id)
         {
-            throw new System.NotImplementedException();
+            if(! await _playListRepository.ExistById(id))
+                throw new NullReferenceException("Playlist doesn't exist");
+        
+            return await _playListRepository.GetSinglePlayList(id);
         }
 
-        public Task<PlayListDTO> UpdatePlayList(int id, PlayListDTO model)
+        public async Task<PlayList> UpdatePlayList(int id, CRUDPlayListDTO model)
         {
-            throw new System.NotImplementedException();
+           
+            if(! await _playListRepository.ExistById(id))
+                throw new NullReferenceException("User doesn't exist");
+
+            var modelDb =await _playListRepository.UpdatePlayList(id, model);
+            return modelDb;
         }
 
-        public Task<bool> SetThumbnailPlayList(int id, byte[] thumbnail)
+        public async Task<bool> SetThumbnailPlayList(int id, byte[] thumbnail)
         {
-            throw new System.NotImplementedException();
+            return await _playListRepository.SetThumbnailPlayList(id, thumbnail);
+        }
+        public async Task<byte[]> GetThumbnailPlayList(int id)
+        {
+            var ImageDb = await _playListRepository.GetThumbnailPlayList(id);
+            return ImageDb;
         }
     }
 }

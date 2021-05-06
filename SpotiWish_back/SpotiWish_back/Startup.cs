@@ -19,6 +19,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SpotiWish_back.Configuration;
 using SpotiWish_back.Data;
+using SpotiWish_back.Repositories;
+using SpotiWish_back.Repositories.Interface;
+using SpotiWish_back.Services;
+using SpotiWish_back.Services.Interface;
 
 
 namespace SpotiWish_back
@@ -44,6 +48,8 @@ namespace SpotiWish_back
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SpotiWish_back", Version = "v1"});
             });
+            services.AddTransient<IPlayListService, PlayListService>();
+            services.AddTransient<IPlayListRepository, PlayListRepository>();
             
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
