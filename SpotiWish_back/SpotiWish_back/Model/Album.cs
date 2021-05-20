@@ -18,9 +18,7 @@ namespace SpotiWish_back.Model
         public int TotalHeard { get; set; }
         
         public int YearReleased { get; set; }
-        
-        public SimpleArtistDTO Artists { get; set; }
-        
+
         public SimpleMusicDTO[] Musics { get; set; }
     }
 

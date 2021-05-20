@@ -43,6 +43,8 @@ namespace SpotiWish_back
             });
             services.AddTransient<IPlayListService, PlayListService>();
             services.AddTransient<IPlayListRepository, PlayListRepository>();
+            services.AddTransient<IMusicService, MusicService>();
+            services.AddTransient<IMusicRepository, MusicRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

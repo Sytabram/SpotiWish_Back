@@ -10,6 +10,7 @@ namespace SpotiWish_back.Profiles
             //playlist
             CreateMap<PlayList, PlayListDTO>().ReverseMap();
             CreateMap<Music, SimpleMusicDTO>().ReverseMap();
+            CreateMap<Music, MusicDTO>().ReverseMap();
             CreateMap<Artist, SimpleArtistDTO>().ReverseMap();
             CreateMap<Album, SimpleAlbumDTO>().ReverseMap();
             CreateMap<User, SimpleUserDTO>().ReverseMap();
