@@ -62,8 +62,8 @@ namespace SpotiWish_back.Repositories
 
         public async Task<bool> SetThumbnailPlayList(int id, byte[] thumbnail)
         {
-            var movieDB = _context.PlayLists.Find(id);
-            movieDB.Thumbnail = thumbnail;
+            var SpotiDB = _context.PlayLists.Find(id);
+            SpotiDB.Thumbnail = thumbnail;
             return (await _context.SaveChangesAsync()) == 1;
         }
 

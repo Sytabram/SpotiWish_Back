@@ -63,5 +63,6 @@ namespace SpotiWish_back.Model
         public string Name { get; set; }
         public DateTime CreatDate { get; set; }
         public string Descrition { get; set; }
+        //todo add music
     }
 }

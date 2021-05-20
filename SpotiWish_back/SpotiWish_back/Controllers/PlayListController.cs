@@ -66,7 +66,7 @@ namespace SpotiWish_back.Controllers
         {
             var ms = new MemoryStream();
             file.CopyTo(ms);
-            _playListService.SetThumbnailPlayList(id, ms.ToArray());
+            await _playListService.SetThumbnailPlayList(id, ms.ToArray());
             return Ok();
         }
         [HttpGet("playlist/{id}/thumbnail")]
