@@ -38,17 +38,18 @@ namespace SpotiWish_back.Controllers
             var newUser = new IdentityUser {Email = user.Email, UserName = user.Name};
 
             var isCreated = await _userManager.CreateAsync(newUser, user.Password);
-
-            await _userManager.AddToRoleAsync(newUser, user.IsAdmin ? "admin" : "user");
-
             if (isCreated.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUser, user.IsAdmin ? "admin" : "user");
                 return Ok(newUser);
+            } 
 
             return BadRequest(new AuthResponse
             {
                 Result = false,
                 Message = string.Join(Environment.NewLine, isCreated.Errors.Select(x => x.Description).ToList())
             });
+            
         }
 
         [HttpPost]

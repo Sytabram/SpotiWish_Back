@@ -9,8 +9,8 @@ using SpotiWish_back.Data;
 namespace SpotiWish_back.Migrations
 {
     [DbContext(typeof(SpotiWishDataContext))]
-    [Migration("20210520070925_UserChange")]
-    partial class UserChange
+    [Migration("20210520082146_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
