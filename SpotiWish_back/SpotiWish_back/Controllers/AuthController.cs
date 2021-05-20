@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using SpotiWish_back.Configuration;
 using SpotiWish_back.Model;
 
@@ -21,20 +23,15 @@ namespace SpotiWish_back.Controllers
         private readonly JwtConfig _jwtConfig;
         private readonly ILogger<AuthController> _logger;
     
-        public AuthController(ILogger<AuthController> logger)
+        public AuthController(UserManager<IdentityUser> userManager, IOptionsMonitor<JwtConfig> optionsMonitor, ILogger<AuthController> logger)
         {
             _logger = logger;
-        }
-
-        public AuthController(UserManager<IdentityUser> userManager, IOptionsMonitor<JwtConfig> optionsMonitor)
-        {
             _userManager = userManager;
             _jwtConfig = optionsMonitor.CurrentValue;
         }
 
         [HttpPost]
         [Route("auth/Register")]
-        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([FromBody] RegisterUserDTO user)
         {
             _logger.LogInformation("auth/Create");

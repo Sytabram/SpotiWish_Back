@@ -57,7 +57,8 @@ namespace SpotiWish_back
             {
                 options.Password.RequiredUniqueChars = 6;
                 options.Password.RequiredLength = 12;
-            }).AddEntityFrameworkStores<SpotiWishDataContext>();
+            })
+                .AddEntityFrameworkStores<SpotiWishDataContext>();
 
             services.AddAuthentication(options =>
                 {
@@ -79,16 +80,6 @@ namespace SpotiWish_back
                         ValidateLifetime = true
                     };
                 });
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("MedecinOnly", policy => policy.RequireClaim("IsMedecin", "True"));
-                options.AddPolicy("CovidTestPolicy", policy => policy.Requirements.Add(new SamePatientRequirement()));
-                options.AddPolicy("ChuvEmployee", policy => policy.Requirements.Add(new HospitalEmployeeRequirement("chuv.ch")));
-            });
-
-            services.AddSingleton<IAuthorizationHandler, SamePatientAuthorizationHandler>();
-            services.AddSingleton<IAuthorizationHandler, HospitalEmployeeAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

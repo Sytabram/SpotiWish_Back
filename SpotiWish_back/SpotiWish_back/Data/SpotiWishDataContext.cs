@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SpotiWish_back.Model;
 
 namespace SpotiWish_back.Data
 {
-    public class SpotiWishDataContext : DbContext
+    public class SpotiWishDataContext : IdentityDbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Music> Musics { get; set; }

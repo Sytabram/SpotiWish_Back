@@ -64,9 +64,7 @@ namespace SpotiWish_back.Model
 
     public class RegisterUserDTO
     {
-        [Required]
-        public int Id { get; set; }
-        
+
         [StringLength(20)]
         public string Name { get; set; }
         

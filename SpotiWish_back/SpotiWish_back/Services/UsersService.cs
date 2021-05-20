@@ -12,14 +12,6 @@ namespace SpotiWish_back.Services
         {
             _categoriesRepository = categoriesRepository;
         }
-        public async Task<User> GetSingle(int id)
-        {
-            if (id < 1)
-                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
-
-            var CategoryDb = await _categoriesRepository.GetSingle(id);
-
-            return CategoryDb;
-        }
+        
     }
 }
