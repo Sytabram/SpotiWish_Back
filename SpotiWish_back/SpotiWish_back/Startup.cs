@@ -45,11 +45,15 @@ namespace SpotiWish_back
             services.AddTransient<IPlayListRepository, PlayListRepository>();
             services.AddTransient<IMusicService, MusicService>();
             services.AddTransient<IMusicRepository, MusicRepository>();
+            services.AddTransient<IArtistService, ArtistService>();
+            services.AddTransient<IArtistRepository, ArtistRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("CorsPolicy");
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -60,7 +64,13 @@ namespace SpotiWish_back
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
