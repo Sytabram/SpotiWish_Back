@@ -22,10 +22,38 @@ namespace SpotiWish_back.Model
         public SimpleMusicDTO[] Musics { get; set; }
     }
 
+    public class AlbumDTO
+    {
+        
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        
+        public byte[] Thumbnail { get; set; }
+        
+        public TimeSpan TotalTime { get; set; }
+        
+        public int TotalHeard { get; set; }
+        
+        public int YearReleased { get; set; }
+
+        public SimpleMusicDTO[] Musics { get; set; }
+    }
     public class SimpleAlbumDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public byte[] Thumbnail { get; set; }
+    }
+
+    public class CRUDAlbumDTO
+    {
+        public string Name { get; set; }
+        
+        public TimeSpan TotalTime { get; set; }
+        
+        public int TotalHeard { get; set; }
+        
+        public int YearReleased { get; set; }
     }
 }
