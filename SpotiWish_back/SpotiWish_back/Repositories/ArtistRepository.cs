@@ -20,6 +20,7 @@ namespace SpotiWish_back.Repositories
             var model = new Artist();
             model.Name = newArtist.Name;
             model.TimeOfHeard = newArtist.TimeOfHeard;
+            model.Albums = newArtist.Albums;
             _context.Artists.Add(model);
             
             await _context.SaveChangesAsync();
@@ -35,12 +36,14 @@ namespace SpotiWish_back.Repositories
         public async Task<List<Artist>> GetAllArtist()
         {
             return await _context.Artists
+                .Include(x=> x.Albums)
                 .ToListAsync();
         }
 
         public async Task<Artist> GetSingleArtist(int id)
         {
             var Artist = await _context.Artists
+                .Include(x=> x.Albums)
                 .FirstOrDefaultAsync(u=> u.Id == id) ;
             return Artist;
         }
@@ -50,7 +53,7 @@ namespace SpotiWish_back.Repositories
             var model = await _context.Artists.FindAsync(id);
             model.Name = ArtistToEdit.Name;
             model.TimeOfHeard = ArtistToEdit.TimeOfHeard;
-
+            model.Albums = ArtistToEdit.Albums;
             await _context.SaveChangesAsync();
             return await GetSingleArtist(id);
         }

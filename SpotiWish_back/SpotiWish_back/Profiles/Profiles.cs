@@ -18,8 +18,10 @@ namespace SpotiWish_back.Profiles
             CreateMap<Artist, ArtistDTO>().ReverseMap();
             
             CreateMap<Album, SimpleAlbumDTO>().ReverseMap();
+            CreateMap<Album, AlbumDTO>().ReverseMap();
             
             CreateMap<User, SimpleUserDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap();
         }
     }
 }

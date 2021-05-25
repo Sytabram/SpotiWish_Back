@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SpotiWish_back.Model
@@ -15,7 +16,7 @@ namespace SpotiWish_back.Model
         
         public byte[] BackGroundThumbnail { get; set; }
         
-        public Album[] Albums { get; set; }
+        public ICollection<SimpleAlbumDTO> Albums { get; set; }
         
         public int TimeOfHeard { get; set; }
     }
@@ -30,8 +31,8 @@ namespace SpotiWish_back.Model
         
         public byte[] BackGroundThumbnail { get; set; }
         
-        public Album[] Albums { get; set; }
-        
+        public ICollection<SimpleAlbumDTO> Albums { get; set; }
+
         public int TimeOfHeard { get; set; }
     }
     public class SimpleArtistDTO
@@ -47,5 +48,6 @@ namespace SpotiWish_back.Model
     {
         public string Name { get; set; }
         public int TimeOfHeard { get; set; }
+        public ICollection<SimpleAlbumDTO> Albums { get; set; }
     }
 }

@@ -54,6 +54,8 @@ namespace SpotiWish_back
             services.AddTransient<IMusicRepository, MusicRepository>();
             services.AddTransient<IArtistService, ArtistService>();
             services.AddTransient<IArtistRepository, ArtistRepository>();
+            services.AddTransient<IAlbumService, AlbumService>();
+            services.AddTransient<IAlbumRepository, AlbumRepository>();
             
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
