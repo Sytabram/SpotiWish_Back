@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace SpotiWish_back.Model
 {
@@ -22,6 +23,8 @@ namespace SpotiWish_back.Model
         public int Subscription { get; set; }
         
         public bool IsAdmin { get; set; }
+
+        public IdentityUser Auth { get; set; }
     }
 
     public class UserDTO
@@ -42,17 +45,7 @@ namespace SpotiWish_back.Model
         
         public bool IsAdmin { get; set; }
     }
-
-    public class CreatUserDTO
-    {
-        public int Id { get; set; }
-        
-        public string Name { get; set; }
-        
-        public string Email { get; set; }
-        
-        public string Password { get; set; }
-    }
+    
     public class SimpleUserDTO
     {
         public int Id { get; set; }

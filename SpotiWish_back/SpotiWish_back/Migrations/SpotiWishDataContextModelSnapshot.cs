@@ -217,9 +217,6 @@ namespace SpotiWish_back.Migrations
                     b.Property<int?>("ArtistId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ArtistsId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .HasColumnType("TEXT")
                         .HasMaxLength(20);
@@ -239,8 +236,6 @@ namespace SpotiWish_back.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ArtistId");
-
-                    b.HasIndex("ArtistsId");
 
                     b.ToTable("Albums");
                 });
@@ -275,9 +270,6 @@ namespace SpotiWish_back.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AlbumId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("AuthorId")
                         .HasColumnType("INTEGER");
 
@@ -305,8 +297,6 @@ namespace SpotiWish_back.Migrations
                         .HasColumnType("BLOB");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AlbumId");
 
                     b.HasIndex("AuthorId");
 
@@ -337,23 +327,6 @@ namespace SpotiWish_back.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PlayLists");
-                });
-
-            modelBuilder.Entity("SpotiWish_back.Model.SimpleArtistDTO", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<byte[]>("ProfilThumbnail")
-                        .HasColumnType("BLOB");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SimpleArtistDTO");
                 });
 
             modelBuilder.Entity("SpotiWish_back.Model.SimpleMusicDTO", b =>
@@ -486,18 +459,10 @@ namespace SpotiWish_back.Migrations
                     b.HasOne("SpotiWish_back.Model.Artist", null)
                         .WithMany("Albums")
                         .HasForeignKey("ArtistId");
-
-                    b.HasOne("SpotiWish_back.Model.SimpleArtistDTO", "Artists")
-                        .WithMany()
-                        .HasForeignKey("ArtistsId");
                 });
 
             modelBuilder.Entity("SpotiWish_back.Model.Music", b =>
                 {
-                    b.HasOne("SpotiWish_back.Model.Album", "Album")
-                        .WithMany()
-                        .HasForeignKey("AlbumId");
-
                     b.HasOne("SpotiWish_back.Model.Artist", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
