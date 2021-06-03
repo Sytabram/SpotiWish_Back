@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SpotiWish_back.Data;
+using SpotiWish_back.Model;
 
 namespace SpotiWish_back
 {
@@ -29,16 +30,17 @@ namespace SpotiWish_back
                     var context = services.GetRequiredService<SpotiWishDataContext>();
                     await context.Database.MigrateAsync();
 
-                    var usersManager = services.GetRequiredService<UserManager<IdentityUser>>();
+                    var usersManager = services.GetRequiredService<UserManager<User>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
                     if (!await rolesManager.RoleExistsAsync("admin"))
                     {
-                        var user = new IdentityUser
+                        var user = new User()
                         {
                             UserName = "Selmir",
                             Email = "selmir@epsic.ch",
-                            EmailConfirmed = true
+                            EmailConfirmed = true,
+
                         };
                         await usersManager.CreateAsync(user, "Ep$icCovid2021");
                         var adminRole = await rolesManager.CreateAsync(new IdentityRole("admin"));

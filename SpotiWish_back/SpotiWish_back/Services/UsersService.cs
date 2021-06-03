@@ -7,11 +7,10 @@ namespace SpotiWish_back.Services
 {
     public class UsersService
     {
-        private readonly IUsersRepository _categoriesRepository;
-        public UsersService(IUsersRepository categoriesRepository)
+        private readonly IUsersRepository _UsersRepository;
+        public UsersService(IUsersRepository usersRepository)
         {
-            _categoriesRepository = categoriesRepository;
+            _UsersRepository = usersRepository;
         }
-        
     }
 }
