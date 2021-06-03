@@ -9,7 +9,7 @@ using SpotiWish_back.Data;
 namespace SpotiWish_back.Migrations
 {
     [DbContext(typeof(SpotiWishDataContext))]
-    [Migration("20210603080713_InitialCreate")]
+    [Migration("20210603082638_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -109,6 +109,10 @@ namespace SpotiWish_back.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
@@ -159,6 +163,8 @@ namespace SpotiWish_back.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -366,48 +372,14 @@ namespace SpotiWish_back.Migrations
                     b.ToTable("PlayLists");
                 });
 
-            modelBuilder.Entity("SpotiWish_back.Model.SimplePlayListDTO", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<byte[]>("Thumbnail")
-                        .HasColumnType("BLOB");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("SimplePlayListDTO");
-                });
-
             modelBuilder.Entity("SpotiWish_back.Model.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("PlayListId")
+                    b.Property<int?>("PlaylistsId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Subscription")
@@ -416,11 +388,9 @@ namespace SpotiWish_back.Migrations
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("BLOB");
 
-                    b.HasKey("Id");
+                    b.HasIndex("PlaylistsId");
 
-                    b.HasIndex("PlayListId");
-
-                    b.ToTable("Users");
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("AlbumArtist", b =>
@@ -528,28 +498,18 @@ namespace SpotiWish_back.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("SpotiWish_back.Model.SimplePlayListDTO", b =>
-                {
-                    b.HasOne("SpotiWish_back.Model.User", null)
-                        .WithMany("Playlists")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("SpotiWish_back.Model.User", b =>
                 {
-                    b.HasOne("SpotiWish_back.Model.PlayList", null)
+                    b.HasOne("SpotiWish_back.Model.PlayList", "Playlists")
                         .WithMany("Users")
-                        .HasForeignKey("PlayListId");
+                        .HasForeignKey("PlaylistsId");
+
+                    b.Navigation("Playlists");
                 });
 
             modelBuilder.Entity("SpotiWish_back.Model.PlayList", b =>
                 {
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("SpotiWish_back.Model.User", b =>
-                {
-                    b.Navigation("Playlists");
                 });
 #pragma warning restore 612, 618
         }
