@@ -19,7 +19,7 @@ namespace SpotiWish_back.Model
          
         public DateTime CreatDate { get; set; }
         
-         
+        public ICollection<User> Users { get; set; }
         public ICollection<Music> Musics { get; set; }
         
          
@@ -41,7 +41,7 @@ namespace SpotiWish_back.Model
         public DateTime CreatDate { get; set; }
         
          
-        public ICollection<SimpleMusicDTO> Musics { get; set; }
+        public ICollection<MusicDTO> Musics { get; set; }
         
          
         public string Descrition { get; set; }

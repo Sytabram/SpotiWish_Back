@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SpotiWish_back.Model
@@ -17,6 +18,10 @@ namespace SpotiWish_back.Model
         
         public int TimeOfPlays { get; set; }
         
+        public ICollection<PlayList> Playlists { get; set; }
+      
+        public ICollection<Album> Albums { get; set; }
+        
         public DateTime ReleaseDate { get; set; }
         
         public byte[] song { get; set; }
@@ -31,7 +36,7 @@ namespace SpotiWish_back.Model
         
         public string Name { get; set; }
         
-        public Artist Author { get; set; }
+        public ArtistDTO Author { get; set; }
         
         public byte[] Thumbnail { get; set; }
         

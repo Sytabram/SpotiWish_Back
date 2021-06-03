@@ -16,7 +16,7 @@ namespace SpotiWish_back.Model
         
         public byte[] BackGroundThumbnail { get; set; }
         
-        public ICollection<SimpleAlbumDTO> Albums { get; set; }
+        public ICollection<Album> Albums { get; set; }
         
         public int TimeOfHeard { get; set; }
     }
@@ -31,7 +31,7 @@ namespace SpotiWish_back.Model
         
         public byte[] BackGroundThumbnail { get; set; }
         
-        public ICollection<SimpleAlbumDTO> Albums { get; set; }
+        public ICollection<AlbumDTO> Albums { get; set; }
 
         public int TimeOfHeard { get; set; }
     }
@@ -48,6 +48,6 @@ namespace SpotiWish_back.Model
     {
         public string Name { get; set; }
         public int TimeOfHeard { get; set; }
-        public ICollection<SimpleAlbumDTO> Albums { get; set; }
+        public List<int> AlbumsId { get; set; }
     }
 }

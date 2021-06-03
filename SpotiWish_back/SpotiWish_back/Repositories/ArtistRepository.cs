@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SpotiWish_back.Data;
@@ -20,11 +21,19 @@ namespace SpotiWish_back.Repositories
             var model = new Artist();
             model.Name = newArtist.Name;
             model.TimeOfHeard = newArtist.TimeOfHeard;
-            model.Albums = newArtist.Albums;
+            model.Albums = await GetAlbumsById(newArtist.AlbumsId);
             _context.Artists.Add(model);
             
             await _context.SaveChangesAsync();
             return model;
+        }
+        public async Task<List<Album>> GetAlbumsById(List<int> idList)
+        {
+            return await _context.Albums
+                .Include(x=>x.Artists)
+                .Include(x=>x.Musics)
+                .Where(t => idList.Contains(t.Id)).ToListAsync();
+                
         }
         public async Task<int> DeleteArtist(int id)
         {
@@ -53,7 +62,7 @@ namespace SpotiWish_back.Repositories
             var model = await _context.Artists.FindAsync(id);
             model.Name = ArtistToEdit.Name;
             model.TimeOfHeard = ArtistToEdit.TimeOfHeard;
-            model.Albums = ArtistToEdit.Albums;
+            model.Albums = await GetAlbumsById(ArtistToEdit.AlbumsId);
             await _context.SaveChangesAsync();
             return await GetSingleArtist(id);
         }
