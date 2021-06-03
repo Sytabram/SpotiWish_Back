@@ -59,10 +59,18 @@ namespace SpotiWish_back.Repositories
 
         public async Task<Artist> UpdateArtist(int id, CRUDArtistDTO ArtistToEdit)
         {
-            var model = await _context.Artists.FindAsync(id);
-            model.Name = ArtistToEdit.Name;
-            model.TimeOfHeard = ArtistToEdit.TimeOfHeard;
-            model.Albums = await GetAlbumsById(ArtistToEdit.AlbumsId);
+            var albumListModel = new List<Album>();
+            if (ArtistToEdit.AlbumsId != null)
+            {
+                var albumList = ArtistToEdit.AlbumsId.ToList();
+                albumListModel = await _context.Albums.Where(x => albumList.Contains(x.Id)).ToListAsync();
+            }
+
+            var artist = await _context.Artists
+                .Include(x => x.Albums).FirstAsync(x => x.Id == id);
+            artist.Name = ArtistToEdit.Name;
+            artist.TimeOfHeard = ArtistToEdit.TimeOfHeard;
+            artist.Albums = albumListModel;
             await _context.SaveChangesAsync();
             return await GetSingleArtist(id);
         }
