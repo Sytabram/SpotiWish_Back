@@ -19,6 +19,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SpotiWish_back.Configuration;
 using SpotiWish_back.Data;
+using SpotiWish_back.Model;
 using SpotiWish_back.Repositories;
 using SpotiWish_back.Repositories.Interface;
 using SpotiWish_back.Services;
@@ -57,7 +58,7 @@ namespace SpotiWish_back
             
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredUniqueChars = 6;
                 options.Password.RequiredLength = 12;

@@ -19,11 +19,11 @@ namespace SpotiWish_back.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly JwtConfig _jwtConfig;
         private readonly ILogger<AuthController> _logger;
     
-        public AuthController(UserManager<IdentityUser> userManager, IOptionsMonitor<JwtConfig> optionsMonitor, ILogger<AuthController> logger)
+        public AuthController(UserManager<User> userManager, IOptionsMonitor<JwtConfig> optionsMonitor, ILogger<AuthController> logger)
         {
             _logger = logger;
             _userManager = userManager;
@@ -35,7 +35,7 @@ namespace SpotiWish_back.Controllers
         public async Task<IActionResult> Create([FromBody] RegisterUserDTO user)
         {
             _logger.LogInformation("auth/Create");
-            var newUser = new IdentityUser {Email = user.Email, UserName = user.Name};
+            var newUser = new User() {Email = user.Email, UserName = user.Name};
 
             var isCreated = await _userManager.CreateAsync(newUser, user.Password);
             if (isCreated.Succeeded)
@@ -87,7 +87,7 @@ namespace SpotiWish_back.Controllers
             });
         }
 
-        private string GenerateJwtToken(IdentityUser user, IList<string> roles, IList<Claim> claims)
+        private string GenerateJwtToken(User user, IList<string> roles, IList<Claim> claims)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 

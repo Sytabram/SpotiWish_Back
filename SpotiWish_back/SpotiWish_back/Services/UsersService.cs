@@ -12,10 +12,5 @@ namespace SpotiWish_back.Services
         {
             _UsersRepository = usersRepository;
         }
-        public async Task<Music> AddUser(CRUDMusicDTO newMusic)
-        {
-            var modelDb = await _UsersRepository.(newMusic);
-            return modelDb;
-        }
     }
 }

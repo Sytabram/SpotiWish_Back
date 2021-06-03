@@ -5,6 +5,5 @@ namespace SpotiWish_back.Services.Interface
 {
     public class IUsersService
     {
-        Task<Music> AddUser(CRUDMusicDTO newMusic);
     }
 }
