@@ -259,6 +259,21 @@ namespace SpotiWish_back.Migrations
                     b.ToTable("MusicPlayList");
                 });
 
+            modelBuilder.Entity("PlayListUser", b =>
+                {
+                    b.Property<int>("PlaylistsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("PlaylistsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("PlayListUser");
+                });
+
             modelBuilder.Entity("SpotiWish_back.Model.Album", b =>
                 {
                     b.Property<int>("Id")
@@ -374,19 +389,11 @@ namespace SpotiWish_back.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("PlaylistsId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Subscription")
                         .HasColumnType("INTEGER");
 
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("BLOB");
-
-                    b.HasIndex("PlaylistsId");
 
                     b.HasDiscriminator().HasValue("User");
                 });
@@ -487,6 +494,21 @@ namespace SpotiWish_back.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PlayListUser", b =>
+                {
+                    b.HasOne("SpotiWish_back.Model.PlayList", null)
+                        .WithMany()
+                        .HasForeignKey("PlaylistsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SpotiWish_back.Model.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SpotiWish_back.Model.Music", b =>
                 {
                     b.HasOne("SpotiWish_back.Model.Artist", "Author")
@@ -494,20 +516,6 @@ namespace SpotiWish_back.Migrations
                         .HasForeignKey("AuthorId");
 
                     b.Navigation("Author");
-                });
-
-            modelBuilder.Entity("SpotiWish_back.Model.User", b =>
-                {
-                    b.HasOne("SpotiWish_back.Model.PlayList", "Playlists")
-                        .WithMany("Users")
-                        .HasForeignKey("PlaylistsId");
-
-                    b.Navigation("Playlists");
-                });
-
-            modelBuilder.Entity("SpotiWish_back.Model.PlayList", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

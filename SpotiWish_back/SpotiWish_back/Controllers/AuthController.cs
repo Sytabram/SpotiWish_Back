@@ -103,8 +103,7 @@ namespace SpotiWish_back.Controllers
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("Id", user.Id),
-                    new Claim("School", "Epsic"),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                    new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 }),
                 Claims = new Dictionary<string, object>(),

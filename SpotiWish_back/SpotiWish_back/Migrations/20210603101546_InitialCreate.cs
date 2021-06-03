@@ -55,6 +55,34 @@ namespace SpotiWish_back.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
+                    Thumbnail = table.Column<byte[]>(type: "BLOB", nullable: true),
+                    Subscription = table.Column<int>(type: "INTEGER", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PlayLists",
                 columns: table => new
                 {
@@ -136,90 +164,6 @@ namespace SpotiWish_back.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
-                    Thumbnail = table.Column<byte[]>(type: "BLOB", nullable: true),
-                    PlaylistsId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Subscription = table.Column<int>(type: "INTEGER", nullable: true),
-                    IsAdmin = table.Column<bool>(type: "INTEGER", nullable: true),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_PlayLists_PlaylistsId",
-                        column: x => x.PlaylistsId,
-                        principalTable: "PlayLists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AlbumMusic",
-                columns: table => new
-                {
-                    AlbumsId = table.Column<int>(type: "INTEGER", nullable: false),
-                    MusicsId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AlbumMusic", x => new { x.AlbumsId, x.MusicsId });
-                    table.ForeignKey(
-                        name: "FK_AlbumMusic_Albums_AlbumsId",
-                        column: x => x.AlbumsId,
-                        principalTable: "Albums",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AlbumMusic_Musics_MusicsId",
-                        column: x => x.MusicsId,
-                        principalTable: "Musics",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MusicPlayList",
-                columns: table => new
-                {
-                    MusicsId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PlaylistsId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MusicPlayList", x => new { x.MusicsId, x.PlaylistsId });
-                    table.ForeignKey(
-                        name: "FK_MusicPlayList_Musics_MusicsId",
-                        column: x => x.MusicsId,
-                        principalTable: "Musics",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MusicPlayList_PlayLists_PlaylistsId",
-                        column: x => x.PlaylistsId,
-                        principalTable: "PlayLists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -309,6 +253,78 @@ namespace SpotiWish_back.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PlayListUser",
+                columns: table => new
+                {
+                    PlaylistsId = table.Column<int>(type: "INTEGER", nullable: false),
+                    UsersId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayListUser", x => new { x.PlaylistsId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_PlayListUser_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlayListUser_PlayLists_PlaylistsId",
+                        column: x => x.PlaylistsId,
+                        principalTable: "PlayLists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AlbumMusic",
+                columns: table => new
+                {
+                    AlbumsId = table.Column<int>(type: "INTEGER", nullable: false),
+                    MusicsId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AlbumMusic", x => new { x.AlbumsId, x.MusicsId });
+                    table.ForeignKey(
+                        name: "FK_AlbumMusic_Albums_AlbumsId",
+                        column: x => x.AlbumsId,
+                        principalTable: "Albums",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AlbumMusic_Musics_MusicsId",
+                        column: x => x.MusicsId,
+                        principalTable: "Musics",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MusicPlayList",
+                columns: table => new
+                {
+                    MusicsId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PlaylistsId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MusicPlayList", x => new { x.MusicsId, x.PlaylistsId });
+                    table.ForeignKey(
+                        name: "FK_MusicPlayList_Musics_MusicsId",
+                        column: x => x.MusicsId,
+                        principalTable: "Musics",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MusicPlayList_PlayLists_PlaylistsId",
+                        column: x => x.PlaylistsId,
+                        principalTable: "PlayLists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AlbumArtist_ArtistsId",
                 table: "AlbumArtist",
@@ -351,11 +367,6 @@ namespace SpotiWish_back.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_PlaylistsId",
-                table: "AspNetUsers",
-                column: "PlaylistsId");
-
-            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
@@ -370,6 +381,11 @@ namespace SpotiWish_back.Migrations
                 name: "IX_Musics_AuthorId",
                 table: "Musics",
                 column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlayListUser_UsersId",
+                table: "PlayListUser",
+                column: "UsersId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -399,16 +415,19 @@ namespace SpotiWish_back.Migrations
                 name: "MusicPlayList");
 
             migrationBuilder.DropTable(
+                name: "PlayListUser");
+
+            migrationBuilder.DropTable(
                 name: "Albums");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Musics");
 
             migrationBuilder.DropTable(
-                name: "Musics");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "PlayLists");
