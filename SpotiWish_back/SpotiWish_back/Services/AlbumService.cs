@@ -47,7 +47,7 @@ namespace SpotiWish_back.Services
         {
            
             if(! await _AlbumRepository.ExistById(id))
-                throw new NullReferenceException("User doesn't exist");
+                throw new NullReferenceException("Album doesn't exist");
 
             var modelDb =await _AlbumRepository.UpdateAlbum(id, model);
             return modelDb;

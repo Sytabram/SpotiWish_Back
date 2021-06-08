@@ -9,7 +9,7 @@ using SpotiWish_back.Data;
 namespace SpotiWish_back.Migrations
 {
     [DbContext(typeof(SpotiWishDataContext))]
-    [Migration("20210603082638_InitialCreate")]
+    [Migration("20210608190445_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -67,7 +67,8 @@ namespace SpotiWish_back.Repositories
             }
 
             var artist = await _context.Artists
-                .Include(x => x.Albums).FirstAsync(x => x.Id == id);
+                .Include(x => x.Albums)
+                .FirstAsync(x => x.Id == id);
             artist.Name = ArtistToEdit.Name;
             artist.TimeOfHeard = ArtistToEdit.TimeOfHeard;
             artist.Albums = albumListModel;
