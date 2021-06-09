@@ -58,5 +58,7 @@ namespace SpotiWish_back.Model
         public int TotalHeard { get; set; }
         
         public int YearReleased { get; set; }
+        public List<int> ArtistId { get; set; }
+        public List<int> MusicId { get; set; }
     }
 }
