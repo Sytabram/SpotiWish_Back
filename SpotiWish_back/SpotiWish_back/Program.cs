@@ -31,11 +31,9 @@ namespace SpotiWish_back
                     await context.Database.MigrateAsync();
 
                     var usersManager = services.GetRequiredService<UserManager<User>>();
-                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
+                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
                     if (!await rolesManager.RoleExistsAsync("admin"))
                     {
-                        Console.WriteLine("passe");
                         var user = new User()
                         {
                             UserName = "SuperAdmin",
@@ -44,8 +42,8 @@ namespace SpotiWish_back
 
                         };
                         await usersManager.CreateAsync(user, "Admin12345");
-                        var adminRole = await rolesManager.CreateAsync(new IdentityRole("admin"));
-                        var userRole = await rolesManager.CreateAsync(new IdentityRole("user"));
+                        var adminRole = await rolesManager.CreateAsync(new IdentityRole<int>("admin"));
+                        var userRole = await rolesManager.CreateAsync(new IdentityRole<int>("user"));
 
                         await usersManager.AddToRoleAsync(user, "admin");
                     }
