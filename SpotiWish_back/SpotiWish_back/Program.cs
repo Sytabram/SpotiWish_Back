@@ -37,12 +37,12 @@ namespace SpotiWish_back
                     {
                         var user = new User()
                         {
-                            UserName = "Selmir",
-                            Email = "selmir@epsic.ch",
+                            UserName = "SuperAdmin",
+                            Email = "superadmin@epsic.ch",
                             EmailConfirmed = true,
 
                         };
-                        await usersManager.CreateAsync(user, "Ep$icCovid2021");
+                        await usersManager.CreateAsync(user, "Admin12345");
                         var adminRole = await rolesManager.CreateAsync(new IdentityRole("admin"));
                         var userRole = await rolesManager.CreateAsync(new IdentityRole("user"));
                         await usersManager.AddClaimAsync(user, new Claim("IsMedecin", "false"));
