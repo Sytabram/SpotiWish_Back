@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpotiWish_back.Controllers.Exception;
@@ -20,12 +21,14 @@ namespace SpotiWish_back.Controllers
             _albumService = albumService;
             _mapper = mapper;
         }
+        [Authorize(Roles = "user")]
         [HttpGet("Album")]
         public async Task<IActionResult> GetAllAlbum()
         {   
             var Albums = await _albumService.GetAllAlbum();
             return Ok(_mapper.Map<List<Album>, List<AlbumDTO>>(Albums));
         }
+        [Authorize(Roles = "admin")]
         [HttpPost("Album/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CRUDAlbumDTO AlbumToEdit)
         {
