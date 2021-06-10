@@ -90,8 +90,7 @@ namespace SpotiWish_back
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
 
-            })
-                .AddEntityFrameworkStores<SpotiWishDataContext>();
+            }).AddEntityFrameworkStores<SpotiWishDataContext>();
 
             services.AddAuthentication(options =>
                 {
