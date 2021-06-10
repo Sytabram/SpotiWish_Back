@@ -79,7 +79,7 @@ namespace SpotiWish_back.Repositories
             if (PlaylistToEdit.UserId != null)
             {
                 var userList = PlaylistToEdit.UserId.ToList();
-                userListModel = await _context.Users.Where(x => userList.Contains(x.IdUser)).ToListAsync();
+                userListModel = await _context.Users.Where(x => userList.Contains(x.Id)).ToListAsync();
             }
             if (PlaylistToEdit.MusicId != null)
             {
