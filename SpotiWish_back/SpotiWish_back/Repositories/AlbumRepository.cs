@@ -16,7 +16,6 @@ namespace SpotiWish_back.Repositories
         {
             _context = context;
         }
-        //todo artist and music update
         public async Task<Album> AddAlbum(CRUDAlbumDTO newAlbum)
         {
             var model = new Album();
@@ -96,6 +95,7 @@ namespace SpotiWish_back.Repositories
             album.TotalTime = AlbumToEdit.TotalTime;
             album.Artists = artistListModel;
             album.Musics = musicListModel;
+            
             await _context.SaveChangesAsync();
             return await GetSingleAlbum(id);
         }
