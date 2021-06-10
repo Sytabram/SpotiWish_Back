@@ -48,6 +48,29 @@ namespace SpotiWish_back
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SpotiWish_back", Version = "v1"});
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        System.Array.Empty<string>()
+                    }
+                });
             });
             services.AddTransient<IPlayListService, PlayListService>();
             services.AddTransient<IPlayListRepository, PlayListRepository>();
@@ -63,7 +86,10 @@ namespace SpotiWish_back
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredUniqueChars = 6;
-                options.Password.RequiredLength = 12;
+                options.Password.RequiredLength = 10;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+
             })
                 .AddEntityFrameworkStores<SpotiWishDataContext>();
 

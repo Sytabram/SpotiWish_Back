@@ -7,7 +7,9 @@ namespace SpotiWish_back.Model
 {
     public class User : IdentityUser
     {
-
+        [Required]
+        public int IdUser { get; set; }
+        
         public byte[] Thumbnail { get; set; }
         
         public ICollection<PlayList> Playlists { get; set; }
