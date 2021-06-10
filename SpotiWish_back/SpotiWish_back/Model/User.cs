@@ -10,11 +10,10 @@ namespace SpotiWish_back.Model
 
         public byte[] Thumbnail { get; set; }
         
-        public virtual PlayList Playlists { get; set; }
+        public ICollection<PlayList> Playlists { get; set; }
         
         public int Subscription { get; set; }
         
-        public bool IsAdmin { get; set; }
         
     }
 

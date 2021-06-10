@@ -15,6 +15,6 @@ namespace SpotiWish_back.Repositories
         {
             _context = context;
         }
-
+        
     }
 }
