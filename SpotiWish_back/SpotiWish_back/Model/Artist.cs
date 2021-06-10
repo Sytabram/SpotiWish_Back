@@ -31,7 +31,7 @@ namespace SpotiWish_back.Model
         
         public byte[] BackGroundThumbnail { get; set; }
         
-        public ICollection<AlbumDTO> Albums { get; set; }
+        public ICollection<SimpleAlbumDTO> Albums { get; set; }
 
         public int TimeOfHeard { get; set; }
     }

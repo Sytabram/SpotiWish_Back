@@ -9,14 +9,14 @@ using SpotiWish_back.Data;
 namespace SpotiWish_back.Migrations
 {
     [DbContext(typeof(SpotiWishDataContext))]
-    [Migration("20210608190445_InitialCreate")]
+    [Migration("20210610070639_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.6");
+                .HasAnnotation("ProductVersion", "5.0.7");
 
             modelBuilder.Entity("AlbumArtist", b =>
                 {

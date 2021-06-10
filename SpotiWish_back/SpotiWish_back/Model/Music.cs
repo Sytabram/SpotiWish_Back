@@ -47,6 +47,10 @@ namespace SpotiWish_back.Model
         public byte[] song { get; set; }
         
         public string Style { get; set; }
+        
+        public ICollection<PlayList> Playlists { get; set; }
+      
+        public ICollection<Album> Albums { get; set; }
 
     }
     public class SimpleMusicDTO
@@ -54,6 +58,10 @@ namespace SpotiWish_back.Model
         public int Id { get; set; }
         
         public string Name { get; set; }
+        
+        public int TimeOfPlays { get; set; }
+        
+        public DateTime ReleaseDate { get; set; }
         
         public byte[] Thumbnail { get; set; }
     }
