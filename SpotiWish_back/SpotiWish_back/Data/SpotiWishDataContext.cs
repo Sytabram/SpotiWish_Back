@@ -5,9 +5,8 @@ using SpotiWish_back.Model;
 
 namespace SpotiWish_back.Data
 {
-    public class SpotiWishDataContext : IdentityDbContext<IdentityUser>
+    public class SpotiWishDataContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
-        public new DbSet<User> Users { get; set; }
         public DbSet<Music> Musics { get; set; }
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }

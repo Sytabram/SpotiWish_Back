@@ -5,11 +5,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace SpotiWish_back.Model
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
-        [Required]
-        public int IdUser { get; set; }
-        
         public byte[] Thumbnail { get; set; }
         
         public ICollection<PlayList> Playlists { get; set; }
