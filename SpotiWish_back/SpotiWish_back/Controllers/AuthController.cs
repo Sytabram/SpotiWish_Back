@@ -102,7 +102,7 @@ namespace SpotiWish_back.Controllers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim("Id", user.Id),
+                    new Claim("Id", user.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 }),

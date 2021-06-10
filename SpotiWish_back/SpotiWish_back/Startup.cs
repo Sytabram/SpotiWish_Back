@@ -83,7 +83,7 @@ namespace SpotiWish_back
             
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddIdentity<User, IdentityRole<int>>(options =>
             {
                 options.Password.RequiredUniqueChars = 6;
                 options.Password.RequiredLength = 10;

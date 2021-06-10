@@ -3,7 +3,8 @@ using SpotiWish_back.Model;
 
 namespace SpotiWish_back.Services.Interface
 {
-    public class IUsersService
+    public interface IUsersService
     {
+        
     }
 }

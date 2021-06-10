@@ -35,6 +35,7 @@ namespace SpotiWish_back
 
                     if (!await rolesManager.RoleExistsAsync("admin"))
                     {
+                        Console.WriteLine("passe");
                         var user = new User()
                         {
                             UserName = "SuperAdmin",
@@ -45,7 +46,6 @@ namespace SpotiWish_back
                         await usersManager.CreateAsync(user, "Admin12345");
                         var adminRole = await rolesManager.CreateAsync(new IdentityRole("admin"));
                         var userRole = await rolesManager.CreateAsync(new IdentityRole("user"));
-                        await usersManager.AddClaimAsync(user, new Claim("IsMedecin", "false"));
 
                         await usersManager.AddToRoleAsync(user, "admin");
                     }

@@ -14,6 +14,10 @@ namespace SpotiWish_back.Services
             _UsersRepository = usersRepository;
         }
         
+        public async Task<List<User>> GetAllUser()
+        {
+            return  await _UsersRepository.GetAllUser();
+        }
 
     }
 }
