@@ -11,9 +11,6 @@ namespace SpotiWish_back.Model
         
         public ICollection<PlayList> Playlists { get; set; }
         
-        public int Subscription { get; set; }
-        
-        
     }
 
     public class UserDTO
@@ -23,16 +20,13 @@ namespace SpotiWish_back.Model
         public string Name { get; set; }
         
         public string Email { get; set; }
-        
-        public string Password { get; set; }
-        
+
         public byte[] Thumbnail { get; set; }
+        
+        public bool IsAdmin { get; set; }
         
         public ICollection<SimplePlayListDTO> Playlists { get; set; }
         
-        public int Subscription { get; set; }
-        
-        public bool IsAdmin { get; set; }
     }
     
     public class SimpleUserDTO

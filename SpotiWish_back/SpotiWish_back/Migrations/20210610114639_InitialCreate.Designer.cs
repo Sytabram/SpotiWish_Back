@@ -9,7 +9,7 @@ using SpotiWish_back.Data;
 namespace SpotiWish_back.Migrations
 {
     [DbContext(typeof(SpotiWishDataContext))]
-    [Migration("20210610105355_InitialCreate")]
+    [Migration("20210610114639_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -360,9 +360,6 @@ namespace SpotiWish_back.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Subscription")
-                        .HasColumnType("INTEGER");
 
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("BLOB");

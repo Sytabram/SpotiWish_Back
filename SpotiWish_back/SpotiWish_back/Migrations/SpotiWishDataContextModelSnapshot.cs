@@ -359,9 +359,6 @@ namespace SpotiWish_back.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Subscription")
-                        .HasColumnType("INTEGER");
-
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("BLOB");
 
