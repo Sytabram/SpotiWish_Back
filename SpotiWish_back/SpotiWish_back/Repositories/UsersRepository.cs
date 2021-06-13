@@ -47,49 +47,37 @@ namespace SpotiWish_back.Repositories
             return User;
         }
 
-        public async Task<User> UpdateUser(int id, CRUDArtistDTO ArtistToEdit)
+        public async Task<User> UpdateUser(int id, CRUDUserDTO UserToEdit)
         {
-            var albumListModel = new List<Album>();
-            if (ArtistToEdit.AlbumsId != null)
+            var playlistListModel = new List<PlayList>();
+            if (UserToEdit.PlaylistsId != null)
             {
-                var albumList = ArtistToEdit.AlbumsId.ToList();
-                albumListModel = await _context.Albums.Where(x => albumList.Contains(x.Id)).ToListAsync();
+                var playlistList = UserToEdit.PlaylistsId.ToList();
+                playlistListModel = await _context.PlayLists.Where(x => playlistList.Contains(x.Id)).ToListAsync();
             }
 
-            var artist = await _context.Artists
-                .Include(x => x.Albums)
+            var user = await _context.Users
+                .Include(x => x.Playlists)
                 .FirstAsync(x => x.Id == id);
-            artist.Name = ArtistToEdit.Name;
-            artist.TimeOfHeard = ArtistToEdit.TimeOfHeard;
-            artist.Albums = albumListModel;
+            user.Playlists = playlistListModel;
             await _context.SaveChangesAsync();
             return await GetSingleUser(id);
         }
 
-        public async Task<bool> SetProfilThumbnailArtist(int id, byte[] thumbnail)
+        public async Task<bool> SetThumbnailUser(int id, byte[] thumbnail)
         {
-            var SpotiDB = _context.Artists.Find(id);
-            SpotiDB.ProfilThumbnail = thumbnail;
+            var SpotiDB = _context.Users.Find(id);
+            SpotiDB.Thumbnail = thumbnail;
             return (await _context.SaveChangesAsync()) == 1;
         }
 
-        public async Task<byte[]> GetProfilThumbnailArtist(int id)
+        public async Task<byte[]> GetThumbnailUser(int id)
         {
-            return (await _context.Artists.FindAsync(id)).ProfilThumbnail;
-        }
-        public async Task<bool> SetBackThumbnailArtist(int id, byte[] thumbnail)
-        {
-            var SpotiDB = _context.Artists.Find(id);
-            SpotiDB.BackGroundThumbnail = thumbnail;
-            return (await _context.SaveChangesAsync()) == 1;
-        }
-        public async Task<byte[]> GetBackThumbnailArtist(int id)
-        {
-            return (await _context.Artists.FindAsync(id)).BackGroundThumbnail;
+            return (await _context.Users.FindAsync(id)).Thumbnail;
         }
         public Task<bool> ExistById(int id)
         {
-            return _context.Artists.AnyAsync(u => u.Id == id);
+            return _context.Users.AnyAsync(u => u.Id == id);
         }
     }
 }

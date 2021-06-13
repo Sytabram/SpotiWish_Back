@@ -21,7 +21,7 @@ namespace SpotiWish_back.Controllers
             _albumService = albumService;
             _mapper = mapper;
         }
-        [Authorize(Roles = "user")]
+        [Authorize(Roles = "user, admin")]
         [HttpGet("Album")]
         public async Task<IActionResult> GetAllAlbum()
         {   

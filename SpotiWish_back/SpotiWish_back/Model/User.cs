@@ -17,14 +17,12 @@ namespace SpotiWish_back.Model
     {
         public int Id { get; set; }
         
-        public string Name { get; set; }
+        public string UserName { get; set; }
         
         public string Email { get; set; }
 
         public byte[] Thumbnail { get; set; }
-        
-        public bool IsAdmin { get; set; }
-        
+
         public ICollection<SimplePlayListDTO> Playlists { get; set; }
         
     }
@@ -33,9 +31,14 @@ namespace SpotiWish_back.Model
     {
         public int Id { get; set; }
         
-        public string Name { get; set; }
+        public string UserName { get; set; }
         
         public byte[] Thumbnail { get; set; }
+    }
+    
+    public class CRUDUserDTO
+    {
+        public List<int> PlaylistsId { get; set; }
     }
 
     public class RegisterUserDTO
@@ -48,8 +51,6 @@ namespace SpotiWish_back.Model
         public string Email { get; set; }
         
         public string Password { get; set; }
-
-        public bool IsAdmin { get; set; }
     }
 
     public class LoginUserDTO

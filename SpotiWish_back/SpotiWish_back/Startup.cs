@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SpotiWish_back.Authorization;
 using SpotiWish_back.Configuration;
 using SpotiWish_back.Data;
 using SpotiWish_back.Model;
@@ -80,6 +81,8 @@ namespace SpotiWish_back
             services.AddTransient<IArtistRepository, ArtistRepository>();
             services.AddTransient<IAlbumService, AlbumService>();
             services.AddTransient<IAlbumRepository, AlbumRepository>();
+            services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
             
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
@@ -112,6 +115,11 @@ namespace SpotiWish_back
                         ValidateLifetime = true
                     };
                 });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("SameUserPolicy", policy => policy.Requirements.Add(new SameUserRequirement()));
+            });
+            services.AddSingleton<IAuthorizationHandler, SameUserAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
