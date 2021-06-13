@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SpotiWish_back.Model;
 
 namespace SpotiWish_back.Data
 {
-    public class SpotiWishDataContext : DbContext
+    public class SpotiWishDataContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Music> Musics { get; set; }
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }
@@ -16,6 +17,15 @@ namespace SpotiWish_back.Data
         {
     
         }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Album>(entity =>
+            {
+                entity.HasMany(u => u.Artists)
+                    .WithMany(p => p.Albums);
+            });
+            base.OnModelCreating(modelBuilder);
+        }
+ 
     }
 }

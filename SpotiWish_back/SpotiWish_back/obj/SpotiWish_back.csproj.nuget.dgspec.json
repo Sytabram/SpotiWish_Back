@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj": {}
+    "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj": {}
   },
   "projects": {
-    "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj": {
+    "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj",
+        "projectUniqueName": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
         "projectName": "SpotiWish_back",
-        "projectPath": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/SpotiWish_back.csproj",
-        "packagesPath": "/Users/bryan.zweiacker/.nuget/packages/",
-        "outputPath": "/Users/bryan.zweiacker/Git_Code/EPSIC/Examen 3eme/SpotiWish_Back/SpotiWish_back/SpotiWish_back/obj/",
+        "projectPath": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
+        "packagesPath": "C:\\Users\\noezw\\.nuget\\packages\\",
+        "outputPath": "D:\\SpotiWish\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/bryan.zweiacker/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\noezw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,15 +47,27 @@
               "target": "Package",
               "version": "[10.1.1, )"
             },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.*, )"
+              "version": "[5.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[3.*, )"
+              "version": "[5.0.6, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -78,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
