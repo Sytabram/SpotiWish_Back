@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SpotiWish_back.Data;
@@ -22,10 +23,28 @@ namespace SpotiWish_back.Repositories
             model.TimeOfPlays = newMusic.TimeOfPlays;
             model.Style = newMusic.Style;
             model.ReleaseDate = newMusic.ReleaseDate;
+            model.Albums = await GetAlbumById(newMusic.AlbumId);
+            model.Playlists = await GetPlaylistById(newMusic.PlaylistId);
             _context.Musics.Add(model);
             
             await _context.SaveChangesAsync();
             return model;
+        }
+        public async Task<List<PlayList>> GetPlaylistById(List<int> idList)
+        {
+            return await _context.PlayLists
+                .Include(x=>x.Musics)
+                .Include(x=>x.Users)
+                .Where(t => idList.Contains(t.Id)).ToListAsync();
+                
+        }
+        public async Task<List<Album>> GetAlbumById(List<int> idList)
+        {
+            return await _context.Albums
+                .Include(x=>x.Artists)
+                .Include(x=>x.Musics)
+                .Where(t => idList.Contains(t.Id)).ToListAsync();
+            
         }
         public async Task<int> DeleteMusic(int id)
         {
@@ -37,24 +56,46 @@ namespace SpotiWish_back.Repositories
         public async Task<List<Music>> GetAllMusic()
         {
             return await _context.Musics
+                .Include(x=>x.Playlists)
+                .Include(x=>x.Albums)
                 .ToListAsync();
         }
 
         public async Task<Music> GetSingleMusic(int id)
         {
             var Music = await _context.Musics
+                .Include(x=>x.Playlists)
+                .Include(x=>x.Albums)
                 .FirstOrDefaultAsync(u=> u.Id == id) ;
             return Music;
         }
 
         public async Task<Music> UpdateMusic(int id, CRUDMusicDTO MusicToEdit)
         {
-            var model = await _context.Musics.FindAsync(id);
-            model.Name = MusicToEdit.Name;
-            model.TimeOfPlays = MusicToEdit.TimeOfPlays;
-            model.Style = MusicToEdit.Style;
-            model.ReleaseDate = MusicToEdit.ReleaseDate;
-
+            var playlistListModel = new List<PlayList>();
+            var albumListModel = new List<Album>();
+            
+            if (MusicToEdit.PlaylistId != null)
+            {
+                var playListList = MusicToEdit.PlaylistId.ToList();
+                playlistListModel = await _context.PlayLists.Where(x => playListList.Contains(x.Id)).ToListAsync();
+            }
+            if (MusicToEdit.AlbumId != null)
+            {
+                var albumList = MusicToEdit.AlbumId.ToList();
+                albumListModel = await _context.Albums.Where(x => albumList.Contains(x.Id)).ToListAsync();
+            }
+            var music = await _context.Musics
+                .Include(x=> x.Playlists)
+                .Include(x=>x.Albums)
+                .FirstAsync(x=>x.Id==id);
+            music.Name = MusicToEdit.Name;
+            music.TimeOfPlays = MusicToEdit.TimeOfPlays;
+            music.Style = MusicToEdit.Style;
+            music.ReleaseDate = MusicToEdit.ReleaseDate;
+            music.Albums = albumListModel;
+            music.Playlists = playlistListModel;
+            
             await _context.SaveChangesAsync();
             return await GetSingleMusic(id);
         }

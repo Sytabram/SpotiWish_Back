@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -22,7 +23,7 @@ namespace SpotiWish_back.Controllers
         private readonly UserManager<User> _userManager;
         private readonly JwtConfig _jwtConfig;
         private readonly ILogger<AuthController> _logger;
-    
+
         public AuthController(UserManager<User> userManager, IOptionsMonitor<JwtConfig> optionsMonitor, ILogger<AuthController> logger)
         {
             _logger = logger;
@@ -30,17 +31,19 @@ namespace SpotiWish_back.Controllers
             _jwtConfig = optionsMonitor.CurrentValue;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
-        [Route("auth/Register")]
-        public async Task<IActionResult> Create([FromBody] RegisterUserDTO user)
+        [Route("auth/CreateAdmin")]
+        public async Task<IActionResult> Create([FromBody] RegisterUserDTO registerUser)
         {
             _logger.LogInformation("auth/Create");
-            var newUser = new User() {Email = user.Email, UserName = user.Name};
+            var newUser = new User() {Email = registerUser.Email, UserName = registerUser.Name};
 
-            var isCreated = await _userManager.CreateAsync(newUser, user.Password);
+            var isCreated = await _userManager.CreateAsync(newUser, registerUser.Password);
+            
             if (isCreated.Succeeded)
             {
-                await _userManager.AddToRoleAsync(newUser, user.IsAdmin ? "admin" : "user");
+                await _userManager.AddToRoleAsync(newUser, "admin");
                 return Ok(newUser);
             } 
 
@@ -49,7 +52,29 @@ namespace SpotiWish_back.Controllers
                 Result = false,
                 Message = string.Join(Environment.NewLine, isCreated.Errors.Select(x => x.Description).ToList())
             });
+
+        }
+        [HttpPost]
+        [Route("auth/Register")]
+        public async Task<IActionResult> Register([FromBody] RegisterUserDTO registerUser)
+        {
+            _logger.LogInformation("auth/Create");
+            var newUser = new User() {Email = registerUser.Email, UserName = registerUser.Name};
+
+            var isCreated = await _userManager.CreateAsync(newUser, registerUser.Password);
             
+            if (isCreated.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUser, "user");
+                return Ok(newUser);
+            } 
+
+            return BadRequest(new AuthResponse
+            {
+                Result = false,
+                Message = string.Join(Environment.NewLine, isCreated.Errors.Select(x => x.Description).ToList())
+            });
+
         }
 
         [HttpPost]
@@ -57,7 +82,7 @@ namespace SpotiWish_back.Controllers
         public async Task<IActionResult> Login([FromBody] LoginUserDTO user)
         {
             _logger.LogInformation("auth/Login");
-            // Vérifier si l'utilisateur avec le même email existe
+            // Vérifier si l'utilisateur avec le même Username existe
             var existingUser = await _userManager.FindByNameAsync(user.Name);
             if (existingUser != null)
             {
@@ -102,9 +127,8 @@ namespace SpotiWish_back.Controllers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim("Id", user.Id),
-                    new Claim("School", "Epsic"),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                    new Claim("Id", user.Id.ToString()),
+                    new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 }),
                 Claims = new Dictionary<string, object>(),
@@ -124,4 +148,4 @@ namespace SpotiWish_back.Controllers
             return jwtTokenHandler.WriteToken(token);
         }
     }
-}
+} 

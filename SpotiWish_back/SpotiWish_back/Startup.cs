@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SpotiWish_back.Authorization;
 using SpotiWish_back.Configuration;
 using SpotiWish_back.Data;
 using SpotiWish_back.Model;
@@ -48,6 +49,29 @@ namespace SpotiWish_back
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SpotiWish_back", Version = "v1"});
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        System.Array.Empty<string>()
+                    }
+                });
             });
             services.AddTransient<IPlayListService, PlayListService>();
             services.AddTransient<IPlayListRepository, PlayListRepository>();
@@ -57,15 +81,19 @@ namespace SpotiWish_back
             services.AddTransient<IArtistRepository, ArtistRepository>();
             services.AddTransient<IAlbumService, AlbumService>();
             services.AddTransient<IAlbumRepository, AlbumRepository>();
+            services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
             
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddIdentity<User, IdentityRole<int>>(options =>
             {
                 options.Password.RequiredUniqueChars = 6;
-                options.Password.RequiredLength = 12;
-            })
-                .AddEntityFrameworkStores<SpotiWishDataContext>();
+                options.Password.RequiredLength = 10;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+
+            }).AddEntityFrameworkStores<SpotiWishDataContext>();
 
             services.AddAuthentication(options =>
                 {
@@ -87,6 +115,11 @@ namespace SpotiWish_back
                         ValidateLifetime = true
                     };
                 });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("SameUserPolicy", policy => policy.Requirements.Add(new SameUserRequirement()));
+            });
+            services.AddSingleton<IAuthorizationHandler, SameUserAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

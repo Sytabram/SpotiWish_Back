@@ -31,21 +31,19 @@ namespace SpotiWish_back
                     await context.Database.MigrateAsync();
 
                     var usersManager = services.GetRequiredService<UserManager<User>>();
-                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
+                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
                     if (!await rolesManager.RoleExistsAsync("admin"))
                     {
                         var user = new User()
                         {
-                            UserName = "Selmir",
-                            Email = "selmir@epsic.ch",
+                            UserName = "SuperAdmin",
+                            Email = "superadmin@epsic.ch",
                             EmailConfirmed = true,
 
                         };
-                        await usersManager.CreateAsync(user, "Ep$icCovid2021");
-                        var adminRole = await rolesManager.CreateAsync(new IdentityRole("admin"));
-                        var userRole = await rolesManager.CreateAsync(new IdentityRole("user"));
-                        await usersManager.AddClaimAsync(user, new Claim("IsMedecin", "false"));
+                        await usersManager.CreateAsync(user, "Admin12345");
+                        var adminRole = await rolesManager.CreateAsync(new IdentityRole<int>("admin"));
+                        var userRole = await rolesManager.CreateAsync(new IdentityRole<int>("user"));
 
                         await usersManager.AddToRoleAsync(user, "admin");
                     }

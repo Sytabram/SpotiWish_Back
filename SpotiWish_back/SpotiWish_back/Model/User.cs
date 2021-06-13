@@ -5,16 +5,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace SpotiWish_back.Model
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
-
         public byte[] Thumbnail { get; set; }
         
-        public virtual PlayList Playlists { get; set; }
-        
-        public int Subscription { get; set; }
-        
-        public bool IsAdmin { get; set; }
+        public ICollection<PlayList> Playlists { get; set; }
         
     }
 
@@ -22,28 +17,28 @@ namespace SpotiWish_back.Model
     {
         public int Id { get; set; }
         
-        public string Name { get; set; }
+        public string UserName { get; set; }
         
         public string Email { get; set; }
-        
-        public string Password { get; set; }
-        
+
         public byte[] Thumbnail { get; set; }
-        
+
         public ICollection<SimplePlayListDTO> Playlists { get; set; }
         
-        public int Subscription { get; set; }
-        
-        public bool IsAdmin { get; set; }
     }
     
     public class SimpleUserDTO
     {
         public int Id { get; set; }
         
-        public string Name { get; set; }
+        public string UserName { get; set; }
         
         public byte[] Thumbnail { get; set; }
+    }
+    
+    public class CRUDUserDTO
+    {
+        public List<int> PlaylistsId { get; set; }
     }
 
     public class RegisterUserDTO
@@ -56,8 +51,6 @@ namespace SpotiWish_back.Model
         public string Email { get; set; }
         
         public string Password { get; set; }
-
-        public bool IsAdmin { get; set; }
     }
 
     public class LoginUserDTO

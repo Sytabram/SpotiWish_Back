@@ -41,7 +41,8 @@ namespace SpotiWish_back.Model
         public DateTime CreatDate { get; set; }
         
          
-        public ICollection<MusicDTO> Musics { get; set; }
+        public ICollection<SimpleUserDTO> Users { get; set; }
+        public ICollection<SimpleMusicDTO> Musics { get; set; }
         
          
         public string Descrition { get; set; }
@@ -63,6 +64,7 @@ namespace SpotiWish_back.Model
         public string Name { get; set; }
         public DateTime CreatDate { get; set; }
         public string Descrition { get; set; }
-        //todo add music
+        public List<int> UserId { get; set; }
+        public List<int> MusicId { get; set; }
     }
 }
