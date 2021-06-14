@@ -49,6 +49,8 @@ namespace SpotiWish_back.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public byte[] Thumbnail { get; set; }
+        public TimeSpan TotalTime { get; set; }
+        public int YearReleased { get; set; }
     }
 
     public class CRUDAlbumDTO
