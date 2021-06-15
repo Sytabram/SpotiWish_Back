@@ -37,6 +37,7 @@ namespace SpotiWish_back.Controllers
             var modelDto = _mapper.Map<AlbumDTO>(modelDb);
             return Ok(modelDto);
         }
+        [Authorize(Roles = "user, admin")]
         [HttpGet("Album/{id}")]
         public async Task<IActionResult> GetSingleAlbum([FromRoute] int id)
         {   
@@ -47,7 +48,7 @@ namespace SpotiWish_back.Controllers
             
             return Ok(_mapper.Map<AlbumDTO>(Album));
         }
-        
+        [Authorize(Roles = "admin")]
         [HttpPost("Album")]
         public async Task<IActionResult> CreatAlbum([FromBody] CRUDAlbumDTO AlbumTocreat)
         {
@@ -56,13 +57,14 @@ namespace SpotiWish_back.Controllers
             
             return Created($"Albums/{modelDTO.Id}", modelDTO);
         }
+        [Authorize(Roles = "admin")]
         [HttpDelete("Album/{id}")]
         public async Task<IActionResult> DeleteAlbum(int id)
         {
             await _albumService.DeleteAlbum(id);
             return NoContent();
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPost("Album/{id}/thumbnail")]
         public async Task<IActionResult> SetThumbnailAlbum([FromRoute] int id, IFormFile file)
         {
@@ -71,11 +73,11 @@ namespace SpotiWish_back.Controllers
             await _albumService.SetThumbnailAlbum(id, ms.ToArray());
             return Ok();
         }
+        [Authorize(Roles = "user, admin")]
         [HttpGet("Album/{id}/thumbnail")]
         public async Task<IActionResult> GetThumbnailAlbum([FromRoute] int id)
         {
             return File(await _albumService.GetThumbnailAlbum(id), "image/jpeg");
         }
-        //todo ajouter supprimer une musique
     }
 }

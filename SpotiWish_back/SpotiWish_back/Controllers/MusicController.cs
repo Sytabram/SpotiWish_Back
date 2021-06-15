@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpotiWish_back.Controllers.Exception;
@@ -20,12 +21,14 @@ namespace SpotiWish_back.Controllers
             _musicService = musicService;
             _mapper = mapper;
         }
+        [Authorize(Roles = "user, admin")]
         [HttpGet("music")]
         public async Task<IActionResult> GetAllMusic()
         {   
             var Musics = await _musicService.GetAllMusic();
             return Ok(_mapper.Map<List<Music>, List<MusicDTO>>(Musics));
         }
+        [Authorize(Roles = "admin")]
         [HttpPost("Music/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CRUDMusicDTO MusicToEdit)
         {
@@ -34,6 +37,7 @@ namespace SpotiWish_back.Controllers
             var modelDto = _mapper.Map<MusicDTO>(modelDb);
             return Ok(modelDto);
         }
+        [Authorize(Roles = "user, admin")]
         [HttpGet("Music/{id}")]
         public async Task<IActionResult> GetSingleMusic([FromRoute] int id)
         {   
@@ -44,7 +48,7 @@ namespace SpotiWish_back.Controllers
             
             return Ok(_mapper.Map<MusicDTO>(Music));
         }
-        
+        [Authorize(Roles = "admin")]
         [HttpPost("Music")]
         public async Task<IActionResult> CreatMusic([FromBody] CRUDMusicDTO MusicTocreat)
         {
@@ -53,13 +57,14 @@ namespace SpotiWish_back.Controllers
             
             return Created($"Musics/{modelDTO.Id}", modelDTO);
         }
+        [Authorize(Roles = "admin")]
         [HttpDelete("Music/{id}")]
         public async Task<IActionResult> DeleteMusic(int id)
         {
             await _musicService.DeleteMusic(id);
             return NoContent();
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPost("Music/{id}/thumbnail")]
         public async Task<IActionResult> SetThumbnailMusic([FromRoute] int id, IFormFile file)
         {
@@ -68,11 +73,13 @@ namespace SpotiWish_back.Controllers
             await _musicService.SetThumbnailMusic(id, ms.ToArray());
             return Ok();
         }
+        [Authorize(Roles = "user, admin")]
         [HttpGet("Music/{id}/thumbnail")]
         public async Task<IActionResult> GetThumbnailMusic([FromRoute] int id)
         {
             return File(await _musicService.GetThumbnailMusic(id), "image/jpeg");
         }
+        [Authorize(Roles = "admin")]
         [HttpPost("Music/{id}/song")]
         public async Task<IActionResult> SetSongMusic([FromRoute] int id, IFormFile file)
         {
@@ -81,11 +88,11 @@ namespace SpotiWish_back.Controllers
             await _musicService.SetThumbnailMusic(id, ms.ToArray());
             return Ok();
         }
+        [Authorize(Roles = "user, admin")]
         [HttpGet("Music/{id}/song")]
         public async Task<IActionResult> GetSongMusic([FromRoute] int id)
         {
             return File(await _musicService.GetThumbnailMusic(id), "audio/mpeg");
         }
-        //todo ajouter supprimer une musique
     }
 }
