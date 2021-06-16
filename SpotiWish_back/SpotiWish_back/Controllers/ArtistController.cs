@@ -73,7 +73,6 @@ namespace SpotiWish_back.Controllers
             await _artistService.SetProfilThumbnailArtist(id, ms.ToArray());
             return Ok();
         }
-        [Authorize(Roles = "user, admin")]
         [HttpGet("Artist/{id}/profilThumbnail")]
         public async Task<IActionResult> GetProfilThumbnailArtist([FromRoute] int id)
         {
@@ -88,7 +87,6 @@ namespace SpotiWish_back.Controllers
             await _artistService.SetBackThumbnailArtist(id, ms.ToArray());
             return Ok();
         }
-        [Authorize(Roles = "user, admin")]
         [HttpGet("Artist/{id}/backThumbnail")]
         public async Task<IActionResult> GetBackThumbnailArtist([FromRoute] int id)
         {

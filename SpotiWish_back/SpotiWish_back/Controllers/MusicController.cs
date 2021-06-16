@@ -73,7 +73,6 @@ namespace SpotiWish_back.Controllers
             await _musicService.SetThumbnailMusic(id, ms.ToArray());
             return Ok();
         }
-        [Authorize(Roles = "user, admin")]
         [HttpGet("Music/{id}/thumbnail")]
         public async Task<IActionResult> GetThumbnailMusic([FromRoute] int id)
         {

@@ -73,7 +73,6 @@ namespace SpotiWish_back.Controllers
             await _albumService.SetThumbnailAlbum(id, ms.ToArray());
             return Ok();
         }
-        [Authorize(Roles = "user, admin")]
         [HttpGet("Album/{id}/thumbnail")]
         public async Task<IActionResult> GetThumbnailAlbum([FromRoute] int id)
         {
