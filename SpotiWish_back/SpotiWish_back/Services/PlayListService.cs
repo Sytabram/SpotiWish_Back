@@ -26,7 +26,7 @@ namespace SpotiWish_back.Services
         {
             if(! await _playListRepository.ExistById(id))
                 throw new NullReferenceException("Playlist doesn't exist");
-      
+            
             return await _playListRepository.DeletePlaylist(id);
         }
 
