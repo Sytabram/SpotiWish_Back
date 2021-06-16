@@ -25,6 +25,7 @@ namespace SpotiWish_back.Repositories
             model.TotalTime = newAlbum.TotalTime;
             model.Artists = await GetArtistById(newAlbum.ArtistId);
             model.Musics = await GetMusicById(newAlbum.MusicId);
+            model.NumOfSong = newAlbum.MusicId.Count;
             _context.Albums.Add(model);
             
             await _context.SaveChangesAsync();
@@ -95,7 +96,7 @@ namespace SpotiWish_back.Repositories
             album.TotalTime = AlbumToEdit.TotalTime;
             album.Artists = artistListModel;
             album.Musics = musicListModel;
-            
+            album.NumOfSong = AlbumToEdit.MusicId.Count;
             await _context.SaveChangesAsync();
             return await GetSingleAlbum(id);
         }
