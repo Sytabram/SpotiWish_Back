@@ -75,6 +75,14 @@ namespace SpotiWish_back.Repositories
         {
             return (await _context.Users.FindAsync(id)).Thumbnail;
         }
+        
+        public async Task<bool> DeleteThumbnailUser(int id)
+        {
+            var SpotiDB = _context.Users.Find(id);
+            SpotiDB.Thumbnail = null;
+            await _context.SaveChangesAsync();
+            return (await _context.SaveChangesAsync()) == 1;
+        }
         public Task<bool> ExistById(int id)
         {
             return _context.Users.AnyAsync(u => u.Id == id);

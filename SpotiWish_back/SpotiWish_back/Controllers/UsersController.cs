@@ -114,5 +114,19 @@ namespace SpotiWish_back.Controllers
         {
             return File(await _usersService.GetThumbnailUser(id), "image/jpeg");
         }
+        
+        [Authorize(Roles = "user, admin")]
+        [HttpDelete("User/{id}/Thumbnail")]
+        public async Task<IActionResult> DeleteThumbnailUser([FromRoute] int id)
+        {
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, id, "SameUserPolicy");
+            if (authorizationResult.Succeeded)
+            {
+                await _usersService.DeleteThumbnailUser(id);
+                return Ok();
+            }
+            else
+                return Forbid();
+        }
     }
 }

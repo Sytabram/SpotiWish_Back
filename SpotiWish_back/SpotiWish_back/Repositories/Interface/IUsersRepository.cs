@@ -12,6 +12,7 @@ namespace SpotiWish_back.Repositories.Interface
         Task<User> UpdateUser(int id, CRUDUserDTO model);
         Task<bool> SetThumbnailUser(int id, byte[] thumbnail);
         Task<byte[]> GetThumbnailUser(int id);
+        Task<bool> DeleteThumbnailUser(int id);
         Task<bool> ExistById(int id);
     }
 }
