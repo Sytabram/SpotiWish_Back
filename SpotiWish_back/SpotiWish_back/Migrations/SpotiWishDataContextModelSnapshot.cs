@@ -212,14 +212,17 @@ namespace SpotiWish_back.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("NumOfSong")
+                        .HasColumnType("INTEGER");
+
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("BLOB");
 
                     b.Property<int>("TotalHeard")
                         .HasColumnType("INTEGER");
 
-                    b.Property<TimeSpan>("TotalTime")
-                        .HasColumnType("TEXT");
+                    b.Property<float>("TotalTime")
+                        .HasColumnType("REAL");
 
                     b.Property<int>("YearReleased")
                         .HasColumnType("INTEGER");

@@ -109,17 +109,10 @@ namespace SpotiWish_back.Controllers
                 return Forbid();
         }
         
-        [Authorize(Roles = "user, admin")]
         [HttpGet("User/{id}/Thumbnail")]
         public async Task<IActionResult> GetThumbnailUser([FromRoute] int id)
         {
-            var authorizationResult = await _authorizationService.AuthorizeAsync(User, id, "SameUserPolicy");
-            if (authorizationResult.Succeeded)
-            {
             return File(await _usersService.GetThumbnailUser(id), "image/jpeg");
-            }
-            else
-                return Forbid();
         }
     }
 }

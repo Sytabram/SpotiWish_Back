@@ -120,6 +120,14 @@ namespace SpotiWish_back
                 options.AddPolicy("SameUserPolicy", policy => policy.Requirements.Add(new SameUserRequirement()));
             });
             services.AddSingleton<IAuthorizationHandler, SameUserAuthorizationHandler>();
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

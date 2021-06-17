@@ -15,9 +15,10 @@ namespace SpotiWish_back.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 20, nullable: true),
                     Thumbnail = table.Column<byte[]>(type: "BLOB", nullable: true),
-                    TotalTime = table.Column<TimeSpan>(type: "TEXT", nullable: false),
+                    TotalTime = table.Column<float>(type: "REAL", nullable: false),
                     TotalHeard = table.Column<int>(type: "INTEGER", nullable: false),
-                    YearReleased = table.Column<int>(type: "INTEGER", nullable: false)
+                    YearReleased = table.Column<int>(type: "INTEGER", nullable: false),
+                    NumOfSong = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
