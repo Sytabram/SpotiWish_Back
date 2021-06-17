@@ -9,6 +9,7 @@ namespace SpotiWish_back.Repositories.Interface
         Task<Music> AddMusic(CRUDMusicDTO newMusic);
         Task<int> DeleteMusic(int id);
         Task<List<Music>> GetAllMusic();
+        Task<List<Music>> Get10Music();
         Task<Music> GetSingleMusic(int id);
         Task<Music> UpdateMusic(int id, CRUDMusicDTO model);
         Task<bool> SetThumbnailMusic(int id, byte[] thumbnail);

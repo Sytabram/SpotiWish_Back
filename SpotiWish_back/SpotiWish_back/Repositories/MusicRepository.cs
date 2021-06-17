@@ -20,8 +20,8 @@ namespace SpotiWish_back.Repositories
         {
             var model = new Music();
             model.Name = newMusic.Name;
+            model.Author = await GetAuthorById(newMusic.AuthorId);
             model.TimeOfPlays = newMusic.TimeOfPlays;
-            model.Style = newMusic.Style;
             model.ReleaseDate = newMusic.ReleaseDate;
             model.Albums = await GetAlbumById(newMusic.AlbumId);
             model.Playlists = await GetPlaylistById(newMusic.PlaylistId);
@@ -36,6 +36,13 @@ namespace SpotiWish_back.Repositories
                 .Include(x=>x.Musics)
                 .Include(x=>x.Users)
                 .Where(t => idList.Contains(t.Id)).ToListAsync();
+                
+        }
+        public async Task<Artist> GetAuthorById(int id)
+        {
+            return await _context.Artists
+                .Include(x=>x.Albums)
+                .FirstOrDefaultAsync(u=> u.Id == id);
                 
         }
         public async Task<List<Album>> GetAlbumById(List<int> idList)
@@ -60,7 +67,14 @@ namespace SpotiWish_back.Repositories
                 .Include(x=>x.Albums)
                 .ToListAsync();
         }
-
+        public async Task<List<Music>> Get10Music()
+        {
+            return await _context.Musics
+                .Include(x=>x.Playlists)
+                .Include(x=>x.Albums)
+                .Take(10)
+                .ToListAsync();
+        }
         public async Task<Music> GetSingleMusic(int id)
         {
             var Music = await _context.Musics
@@ -74,7 +88,13 @@ namespace SpotiWish_back.Repositories
         {
             var playlistListModel = new List<PlayList>();
             var albumListModel = new List<Album>();
+            var authorIdModel = new Artist();
             
+            if (MusicToEdit.AuthorId != null)
+            {
+                var authorId = MusicToEdit.AuthorId;
+                authorIdModel = await _context.Artists.FirstOrDefaultAsync(u=> u.Id == id);
+            }
             if (MusicToEdit.PlaylistId != null)
             {
                 var playListList = MusicToEdit.PlaylistId.ToList();
@@ -91,11 +111,10 @@ namespace SpotiWish_back.Repositories
                 .FirstAsync(x=>x.Id==id);
             music.Name = MusicToEdit.Name;
             music.TimeOfPlays = MusicToEdit.TimeOfPlays;
-            music.Style = MusicToEdit.Style;
             music.ReleaseDate = MusicToEdit.ReleaseDate;
             music.Albums = albumListModel;
             music.Playlists = playlistListModel;
-            
+            music.Author = authorIdModel;
             await _context.SaveChangesAsync();
             return await GetSingleMusic(id);
         }
