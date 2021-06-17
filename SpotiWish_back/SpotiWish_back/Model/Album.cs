@@ -8,18 +8,14 @@ namespace SpotiWish_back.Model
     {
         [Required]
         public int Id { get; set; }
-        
         [StringLength(20)]
         public string Name { get; set; }
-        
         public byte[] Thumbnail { get; set; }
-        
         public float TotalTime { get; set; }
-        
         public int TotalHeard { get; set; }
-        
         public int YearReleased { get; set; }
-        public int NumOfSong { get; set; }
+        
+        public int NumOfSong { get; set; }//todo delete
         public ICollection<Artist> Artists { get; set; }
 
         public ICollection<Music> Musics { get; set; }

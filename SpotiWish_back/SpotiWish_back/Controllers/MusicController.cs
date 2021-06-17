@@ -28,6 +28,12 @@ namespace SpotiWish_back.Controllers
             var Musics = await _musicService.GetAllMusic();
             return Ok(_mapper.Map<List<Music>, List<MusicDTO>>(Musics));
         }
+        [HttpGet("10music")]
+        public async Task<IActionResult> Get10Music()
+        {   
+            var Musics = await _musicService.Get10Music();
+            return Ok(_mapper.Map<List<Music>, List<MusicDTO>>(Musics));
+        }
         [Authorize(Roles = "admin")]
         [HttpPost("Music/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CRUDMusicDTO MusicToEdit)

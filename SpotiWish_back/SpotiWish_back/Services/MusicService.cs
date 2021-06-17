@@ -34,7 +34,10 @@ namespace SpotiWish_back.Services
         {
             return  await _MusicRepository.GetAllMusic();
         }
-
+        public async Task<List<Music>> Get10Music()
+        {
+            return  await _MusicRepository.Get10Music();
+        }
         public async Task<Music> GetSingleMusic(int id)
         {
             if(! await _MusicRepository.ExistById(id))

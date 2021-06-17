@@ -12,7 +12,7 @@ namespace SpotiWish_back.Model
         [StringLength(20)]
         public string Name { get; set; }
         
-        public Artist Author { get; set; }
+        public Artist Author { get; set; }//todo add
         
         public byte[] Thumbnail { get; set; }
         
@@ -27,7 +27,7 @@ namespace SpotiWish_back.Model
         public byte[] song { get; set; }
 
         [StringLength(20)]
-        public string Style { get; set; }
+        public string Style { get; set; }//todo delete
     }
 
     public class MusicDTO

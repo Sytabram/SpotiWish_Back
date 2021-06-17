@@ -17,7 +17,7 @@ namespace SpotiWish_back.Model
         public byte[] Thumbnail { get; set; }
         
          
-        public DateTime CreatDate { get; set; }
+        public DateTime CreatDate { get; set; }//todo delete
         
         public ICollection<User> Users { get; set; }
         public ICollection<Music> Musics { get; set; }
