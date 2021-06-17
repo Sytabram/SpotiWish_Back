@@ -10,7 +10,7 @@ namespace SpotiWish_test.Controllers
     public class UsersControllerTests: ApiControllerTestBase
     {
         [TestMethod, TestCategory("Ex1")]
-        public async Task CharactersGetAll()
+        public async Task GetAllUsers()
         {
             // Act
             var response = await GetAsync<IList<User>>("/User");
@@ -23,7 +23,7 @@ namespace SpotiWish_test.Controllers
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(3)]
-        public async Task CharactersGetSingleId_Ok(int id)
+        public async Task UserGetSingleId(int id)
         {
             // Act
             var response = await GetAsync<User>($"/User/{id}");

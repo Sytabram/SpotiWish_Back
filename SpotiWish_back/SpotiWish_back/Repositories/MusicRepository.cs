@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ namespace SpotiWish_back.Repositories
             model.Name = newMusic.Name;
             model.TimeOfPlays = newMusic.TimeOfPlays;
             model.Style = newMusic.Style;
-            model.ReleaseDate = newMusic.ReleaseDate;
+            model.ReleaseDate = DateTime.Now;
             model.Albums = await GetAlbumById(newMusic.AlbumId);
             model.Playlists = await GetPlaylistById(newMusic.PlaylistId);
             _context.Musics.Add(model);
