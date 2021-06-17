@@ -70,7 +70,7 @@ namespace SpotiWish_back.Model
         public int TimeOfPlays { get; set; }
         
         public DateTime ReleaseDate { get; set; }
-        
+        public int AuthorId { get; set; }
         public List<int> AlbumId { get; set; }
         public List<int> PlaylistId { get; set; }
      
