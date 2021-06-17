@@ -212,9 +212,6 @@ namespace SpotiWish_back.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("NumOfSong")
-                        .HasColumnType("INTEGER");
-
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("BLOB");
 
@@ -272,10 +269,6 @@ namespace SpotiWish_back.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Style")
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("BLOB");
 
@@ -297,9 +290,6 @@ namespace SpotiWish_back.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatDate")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Descrition")
                         .HasColumnType("TEXT");

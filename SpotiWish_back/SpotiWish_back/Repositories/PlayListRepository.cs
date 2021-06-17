@@ -23,7 +23,6 @@ namespace SpotiWish_back.Repositories
             var model = new PlayList();
             model.Name = newPLayList.Name;
             model.Descrition = newPLayList.Descrition;
-            model.CreatDate = newPLayList.CreatDate;
             model.Users = await GetUserById(newPLayList.UserId);
             model.Musics = await GetMusicById(newPLayList.MusicId);
             _context.PlayLists.Add(model);
