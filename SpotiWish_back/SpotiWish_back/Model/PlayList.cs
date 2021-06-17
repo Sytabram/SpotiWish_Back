@@ -12,20 +12,14 @@ namespace SpotiWish_back.Model
         
         [StringLength(20)]
         public string Name { get; set; }
-
-         
+        
         public byte[] Thumbnail { get; set; }
-        
-         
-        public DateTime CreatDate { get; set; }//todo delete
-        
+
         public ICollection<User> Users { get; set; }
         public ICollection<Music> Musics { get; set; }
         
-         
         public string Descrition { get; set; }
-        
-        
+
     }
     public class PlayListDTO{
 
