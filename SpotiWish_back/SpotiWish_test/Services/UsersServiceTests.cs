@@ -25,7 +25,7 @@ namespace SpotiWish_test.Services
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(098765)]
-        public async Task GetSingle_ReturnTeamWithId_WhenIdIsGreaterThan0(int userId)
+        public async Task GetSingle_ReturnUserWithId_WhenIdIsGreaterThan0(int userId)
         {
             //Arrange
             var sut = new UsersService(new UsersRepositoryMock());

@@ -37,6 +37,9 @@ namespace SpotiWish_back.Services
 
         public async Task<PlayList> GetSinglePlayList(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _playListRepository.ExistById(id))
                 throw new NullReferenceException("Playlist doesn't exist");
         

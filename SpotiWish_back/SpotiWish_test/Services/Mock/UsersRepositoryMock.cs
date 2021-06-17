@@ -42,9 +42,13 @@ namespace SpotiWish_test.Services
             return null;
         }
 
-        public Task<User> UpdateUser(int id, CRUDUserDTO teamToUpdate)
+        public Task<User> UpdateUser(int id, CRUDUserDTO userUpdate)
         {
             return null;
+        }
+        public Task<bool> DeleteThumbnailUser(int id)
+        {
+            return Task.FromResult(true);
         }
     }
 }

@@ -59,5 +59,10 @@ namespace SpotiWish_back.Services
             var ImageDb = await _UsersRepository.GetThumbnailUser(id);
             return ImageDb;
         }
+        
+        public async Task<bool> DeleteThumbnailUser(int id)
+        {
+            return await _UsersRepository.DeleteThumbnailUser(id);
+        }
     }
 }
