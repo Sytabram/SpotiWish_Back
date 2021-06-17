@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <Folder Include="Middel" />
+      <Folder Include="Migrations" />
     </ItemGroup>
 
 </Project>

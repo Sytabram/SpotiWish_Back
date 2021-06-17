@@ -84,14 +84,13 @@ namespace SpotiWish_back.Controllers
         {
             var ms = new MemoryStream();
             file.CopyTo(ms);
-            await _musicService.SetThumbnailMusic(id, ms.ToArray());
+            await _musicService.SetSongMusic(id, ms.ToArray());
             return Ok();
         }
-        [Authorize(Roles = "user, admin")]
         [HttpGet("Music/{id}/song")]
         public async Task<IActionResult> GetSongMusic([FromRoute] int id)
         {
-            return File(await _musicService.GetThumbnailMusic(id), "audio/mpeg");
+            return File(await _musicService.GetSongMusic(id), "audio/mpeg");
         }
     }
 }

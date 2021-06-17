@@ -102,8 +102,8 @@ namespace SpotiWish_back.Repositories
 
         public async Task<bool> SetThumbnailMusic(int id, byte[] thumbnail)
         {
-            var SpotiDB = _context.Musics.Find(id);
-            SpotiDB.Thumbnail = thumbnail;
+            var SpotiDBThumbnail = _context.Musics.Find(id);
+            SpotiDBThumbnail.Thumbnail = thumbnail;
             return (await _context.SaveChangesAsync()) == 1;
         }
 
@@ -113,14 +113,14 @@ namespace SpotiWish_back.Repositories
         }
         public async Task<bool> SetSongMusic(int id, byte[] song)
         {
-            var SpotiDB = _context.Musics.Find(id);
-            SpotiDB.Thumbnail = song;
+            var SpotiDBSong = _context.Musics.Find(id);
+            SpotiDBSong.song = song;
             return (await _context.SaveChangesAsync()) == 1;
         }
 
         public async Task<byte[]> GetSongMusic(int id)
         {
-            return (await _context.Musics.FindAsync(id)).Thumbnail;
+            return (await _context.Musics.FindAsync(id)).song;
         }
         public Task<bool> ExistById(int id)
         {

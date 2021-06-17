@@ -68,8 +68,8 @@ namespace SpotiWish_back.Services
         }
         public async Task<byte[]> GetSongMusic(int id)
         {
-            var ImageDb = await _MusicRepository.GetSongMusic(id);
-            return ImageDb;
+            var MusicDb = await _MusicRepository.GetSongMusic(id);
+            return MusicDb;
         }
     }
 }
