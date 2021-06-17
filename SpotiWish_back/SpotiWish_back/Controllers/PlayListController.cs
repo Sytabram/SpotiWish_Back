@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpotiWish_back.Controllers.Exception;
@@ -21,12 +22,14 @@ namespace SpotiWish_back.Controllers
             _mapper = mapper;
         }
         //return empty idk why
+        [Authorize(Roles = "user, admin")]
         [HttpGet("playlist")]
         public async Task<IActionResult> GetAllPlayList()
         {   
             var playLists = await _playListService.GetAllPlayList();
             return Ok(_mapper.Map<List<PlayList>, List<PlayListDTO>>(playLists));
         }
+        [Authorize(Roles = "user, admin")]
         [HttpPost("playlist/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CRUDPlayListDTO playListToEdit)
         {
@@ -35,6 +38,7 @@ namespace SpotiWish_back.Controllers
             var modelDto = _mapper.Map<PlayListDTO>(modelDb);
             return Ok(modelDto);
         }
+        [Authorize(Roles = "user, admin")]
         [HttpGet("playlist/{id}")]
         public async Task<IActionResult> GetSinglePlayList([FromRoute] int id)
         {   
@@ -45,7 +49,7 @@ namespace SpotiWish_back.Controllers
             
             return Ok(_mapper.Map<PlayListDTO>(playlist));
         }
-        
+        [Authorize(Roles = "user, admin")]
         [HttpPost("playlist")]
         public async Task<IActionResult> CreatPlayList([FromBody] CRUDPlayListDTO playListTocreat)
         {
@@ -54,13 +58,14 @@ namespace SpotiWish_back.Controllers
             
             return Created($"playlists/{modelDTO.Id}", modelDTO);
         }
+        [Authorize(Roles = "user, admin")]
         [HttpDelete("playlist/{id}")]
         public async Task<IActionResult> DeletePlaylist(int id)
         {
             await _playListService.DeletePlaylist(id);
             return NoContent();
         }
-
+        [Authorize(Roles = "user, admin")]
         [HttpPost("playlist/{id}/thumbnail")]
         public async Task<IActionResult> SetThumbnailPlayList([FromRoute] int id, IFormFile file)
         {
@@ -74,6 +79,5 @@ namespace SpotiWish_back.Controllers
         {
             return File(await _playListService.GetThumbnailPlayList(id), "image/jpeg");
         }
-        //todo ajouter supprimer une musique
     }
 }
