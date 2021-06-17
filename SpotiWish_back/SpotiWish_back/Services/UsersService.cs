@@ -29,9 +29,14 @@ namespace SpotiWish_back.Services
 
         public async Task<User> GetSingleUser(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _UsersRepository.ExistById(id))
                 throw new NullReferenceException("User doesn't exist");
         
+            
+            
             return await _UsersRepository.GetSingleUser(id);
         }
 
@@ -53,6 +58,11 @@ namespace SpotiWish_back.Services
         {
             var ImageDb = await _UsersRepository.GetThumbnailUser(id);
             return ImageDb;
+        }
+        
+        public async Task<bool> DeleteThumbnailUser(int id)
+        {
+            return await _UsersRepository.DeleteThumbnailUser(id);
         }
     }
 }
