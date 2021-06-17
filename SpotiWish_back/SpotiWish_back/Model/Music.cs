@@ -25,9 +25,7 @@ namespace SpotiWish_back.Model
         public DateTime ReleaseDate { get; set; }
         
         public byte[] song { get; set; }
-
-        [StringLength(20)]
-        public string Style { get; set; }//todo delete
+        
     }
 
     public class MusicDTO
@@ -46,7 +44,6 @@ namespace SpotiWish_back.Model
         
         public byte[] song { get; set; }
         
-        public string Style { get; set; }
         
         public ICollection<SimplePlayListDTO> Playlists { get; set; }
       
@@ -74,7 +71,6 @@ namespace SpotiWish_back.Model
         
         public DateTime ReleaseDate { get; set; }
         
-        public string Style { get; set; }
         public List<int> AlbumId { get; set; }
         public List<int> PlaylistId { get; set; }
      

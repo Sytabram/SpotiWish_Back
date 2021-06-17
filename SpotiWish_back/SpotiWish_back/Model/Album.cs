@@ -33,8 +33,7 @@ namespace SpotiWish_back.Model
         public int TotalHeard { get; set; }
         
         public int YearReleased { get; set; }
-        public int NumOfSong { get; set; }
-        
+
         public ICollection<SimpleArtistDTO> Artists { get; set; }
 
         public ICollection<SimpleMusicDTO> Musics { get; set; }
@@ -52,13 +51,9 @@ namespace SpotiWish_back.Model
     public class CRUDAlbumDTO
     {
         public string Name { get; set; }
-        
         public float TotalTime { get; set; }
-        
         public int TotalHeard { get; set; }
-        
         public int YearReleased { get; set; }
-        public int NumOfSong { get; set; }
         public List<int> ArtistId { get; set; }
         public List<int> MusicId { get; set; }
     }

@@ -21,7 +21,6 @@ namespace SpotiWish_back.Repositories
             var model = new Music();
             model.Name = newMusic.Name;
             model.TimeOfPlays = newMusic.TimeOfPlays;
-            model.Style = newMusic.Style;
             model.ReleaseDate = newMusic.ReleaseDate;
             model.Albums = await GetAlbumById(newMusic.AlbumId);
             model.Playlists = await GetPlaylistById(newMusic.PlaylistId);
@@ -98,7 +97,6 @@ namespace SpotiWish_back.Repositories
                 .FirstAsync(x=>x.Id==id);
             music.Name = MusicToEdit.Name;
             music.TimeOfPlays = MusicToEdit.TimeOfPlays;
-            music.Style = MusicToEdit.Style;
             music.ReleaseDate = MusicToEdit.ReleaseDate;
             music.Albums = albumListModel;
             music.Playlists = playlistListModel;
