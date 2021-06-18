@@ -34,7 +34,7 @@ namespace SpotiWish_back.Model
         
         public string Name { get; set; }
         
-        public ArtistDTO Author { get; set; }
+        public SimpleArtistDTO Author { get; set; }
         
         public byte[] Thumbnail { get; set; }
         

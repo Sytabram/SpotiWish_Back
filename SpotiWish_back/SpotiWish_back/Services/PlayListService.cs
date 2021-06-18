@@ -24,6 +24,9 @@ namespace SpotiWish_back.Services
 
         public async Task<int> DeletePlaylist(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _playListRepository.ExistById(id))
                 throw new NullReferenceException("Playlist doesn't exist");
             
@@ -48,6 +51,8 @@ namespace SpotiWish_back.Services
 
         public async Task<PlayList> UpdatePlayList(int id, CRUDPlayListDTO model)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
            
             if(! await _playListRepository.ExistById(id))
                 throw new NullReferenceException("User doesn't exist");
@@ -58,10 +63,16 @@ namespace SpotiWish_back.Services
 
         public async Task<bool> SetThumbnailPlayList(int id, byte[] thumbnail)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             return await _playListRepository.SetThumbnailPlayList(id, thumbnail);
         }
         public async Task<byte[]> GetThumbnailPlayList(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             var ImageDb = await _playListRepository.GetThumbnailPlayList(id);
             return ImageDb;
         }

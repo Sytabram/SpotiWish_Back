@@ -24,6 +24,9 @@ namespace SpotiWish_back.Services
 
         public async Task<int> DeleteAlbum(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _AlbumRepository.ExistById(id))
                 throw new NullReferenceException("Album doesn't exist");
       
@@ -37,6 +40,9 @@ namespace SpotiWish_back.Services
 
         public async Task<Album> GetSingleAlbum(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _AlbumRepository.ExistById(id))
                 throw new NullReferenceException("Album doesn't exist");
         
@@ -45,7 +51,9 @@ namespace SpotiWish_back.Services
 
         public async Task<Album> UpdateAlbum(int id, CRUDAlbumDTO model)
         {
-           
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _AlbumRepository.ExistById(id))
                 throw new NullReferenceException("Album doesn't exist");
 
@@ -55,10 +63,16 @@ namespace SpotiWish_back.Services
 
         public async Task<bool> SetThumbnailAlbum(int id, byte[] thumbnail)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             return await _AlbumRepository.SetThumbnailAlbum(id, thumbnail);
         }
         public async Task<byte[]> GetThumbnailAlbum(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             var ImageDb = await _AlbumRepository.GetThumbnailAlbum(id);
             return ImageDb;
         }

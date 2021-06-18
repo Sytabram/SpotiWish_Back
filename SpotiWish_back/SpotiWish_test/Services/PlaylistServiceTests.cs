@@ -5,7 +5,7 @@ using SpotiWish_back.Services;
 
 namespace SpotiWish_test.Services
 {
-    [TestClass, TestCategory("Playlists")]
+    [TestClass, TestCategory("Playlist")]
     public class PlaylistServiceTests
     {
 

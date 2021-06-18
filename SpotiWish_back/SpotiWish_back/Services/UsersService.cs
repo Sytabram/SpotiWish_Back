@@ -16,6 +16,9 @@ namespace SpotiWish_back.Services
         }
         public async Task<int> DeleteUser(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _UsersRepository.ExistById(id))
                 throw new NullReferenceException("User doesn't exist");
       
@@ -42,7 +45,9 @@ namespace SpotiWish_back.Services
 
         public async Task<User> UpdateUser(int id, CRUDUserDTO model)
         {
-           
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _UsersRepository.ExistById(id))
                 throw new NullReferenceException("User doesn't exist");
 
@@ -52,16 +57,25 @@ namespace SpotiWish_back.Services
 
         public async Task<bool> SetThumbnailUser(int id, byte[] thumbnail)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             return await _UsersRepository.SetThumbnailUser(id, thumbnail);
         }
         public async Task<byte[]> GetThumbnailUser(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             var ImageDb = await _UsersRepository.GetThumbnailUser(id);
             return ImageDb;
         }
         
         public async Task<bool> DeleteThumbnailUser(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             return await _UsersRepository.DeleteThumbnailUser(id);
         }
     }

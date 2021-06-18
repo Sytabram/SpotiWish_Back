@@ -24,6 +24,9 @@ namespace SpotiWish_back.Services
 
         public async Task<int> DeleteMusic(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _MusicRepository.ExistById(id))
                 throw new NullReferenceException("Music doesn't exist");
       
@@ -40,6 +43,9 @@ namespace SpotiWish_back.Services
         }
         public async Task<Music> GetSingleMusic(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _MusicRepository.ExistById(id))
                 throw new NullReferenceException("Music doesn't exist");
         
@@ -48,7 +54,9 @@ namespace SpotiWish_back.Services
 
         public async Task<Music> UpdateMusic(int id, CRUDMusicDTO model)
         {
-           
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             if(! await _MusicRepository.ExistById(id))
                 throw new NullReferenceException("User doesn't exist");
 
@@ -58,19 +66,31 @@ namespace SpotiWish_back.Services
 
         public async Task<bool> SetThumbnailMusic(int id, byte[] thumbnail)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             return await _MusicRepository.SetThumbnailMusic(id, thumbnail);
         }
         public async Task<byte[]> GetThumbnailMusic(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             var ImageDb = await _MusicRepository.GetThumbnailMusic(id);
             return ImageDb;
         }
         public async Task<bool> SetSongMusic(int id, byte[] song)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             return await _MusicRepository.SetSongMusic(id, song);
         }
         public async Task<byte[]> GetSongMusic(int id)
         {
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
+            
             var MusicDb = await _MusicRepository.GetSongMusic(id);
             return MusicDb;
         }

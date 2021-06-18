@@ -40,6 +40,7 @@ namespace SpotiWish_back.Controllers
         [HttpGet("User")]
         public async Task<IActionResult> GetAllUser()
         {   
+            _logger.LogInformation("Get User");
             var Users = await _usersService.GetAllUser();
             return Ok(_mapper.Map<List<User>, List<UserDTO>>(Users));
         }
@@ -48,6 +49,7 @@ namespace SpotiWish_back.Controllers
         [HttpPost("User/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CRUDUserDTO UserToEdit)
         {
+            _logger.LogInformation("Post User/{id}");
             var authorizationResult = await _authorizationService.AuthorizeAsync(User, id, "SameUserPolicy");
             if (authorizationResult.Succeeded)
             {
@@ -57,13 +59,14 @@ namespace SpotiWish_back.Controllers
                 return Ok(modelDto);
             }
             else
+                _logger.LogError("Not Authorize");
                 return Forbid();
         }
         [Authorize(Roles = "user, admin")]
         [HttpGet("User/{id}")]
         public async Task<IActionResult> GetSingleUser([FromRoute] int id)
-        {   
-            
+        {
+            _logger.LogInformation("Get User/{id}");
             var authorizationResult = await _authorizationService.AuthorizeAsync(User, id, "SameUserPolicy");
             if (authorizationResult.Succeeded)
             {
@@ -76,6 +79,7 @@ namespace SpotiWish_back.Controllers
             }
            
             else
+                _logger.LogError("Not Authorize");
                 return Forbid();
         }
         
@@ -83,6 +87,7 @@ namespace SpotiWish_back.Controllers
         [HttpDelete("User/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
+            _logger.LogInformation("Delete User/{id}");
             var authorizationResult = await _authorizationService.AuthorizeAsync(User, id, "SameUserPolicy");
             if (authorizationResult.Succeeded)
             {
@@ -90,6 +95,7 @@ namespace SpotiWish_back.Controllers
                 return NoContent();
             }
             else
+                _logger.LogError("Not Authorize");
                 return Forbid();
         }
         
@@ -97,6 +103,7 @@ namespace SpotiWish_back.Controllers
         [HttpPost("User/{id}/Thumbnail")]
         public async Task<IActionResult> SetThumbnailUser([FromRoute] int id, IFormFile file)
         {
+            _logger.LogInformation("Post User/{id}/Thumbnail");
             var authorizationResult = await _authorizationService.AuthorizeAsync(User, id, "SameUserPolicy");
             if (authorizationResult.Succeeded)
             {
@@ -106,12 +113,14 @@ namespace SpotiWish_back.Controllers
                 return Ok();
             }
             else
+                _logger.LogError("Not Authorize");
                 return Forbid();
         }
         
         [HttpGet("User/{id}/Thumbnail")]
         public async Task<IActionResult> GetThumbnailUser([FromRoute] int id)
         {
+            _logger.LogInformation("Get User/{id}/Thumbnail");
             return File(await _usersService.GetThumbnailUser(id), "image/jpeg");
         }
         
@@ -119,6 +128,7 @@ namespace SpotiWish_back.Controllers
         [HttpDelete("User/{id}/Thumbnail")]
         public async Task<IActionResult> DeleteThumbnailUser([FromRoute] int id)
         {
+            _logger.LogInformation("Delete User/{id}/Thumbnail");
             var authorizationResult = await _authorizationService.AuthorizeAsync(User, id, "SameUserPolicy");
             if (authorizationResult.Succeeded)
             {
@@ -126,6 +136,7 @@ namespace SpotiWish_back.Controllers
                 return Ok();
             }
             else
+                _logger.LogError("Not Authorize");
                 return Forbid();
         }
     }

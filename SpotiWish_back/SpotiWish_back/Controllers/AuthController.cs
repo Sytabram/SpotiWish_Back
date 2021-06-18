@@ -36,7 +36,7 @@ namespace SpotiWish_back.Controllers
         [Route("auth/CreateAdmin")]
         public async Task<IActionResult> Create([FromBody] RegisterUserDTO registerUser)
         {
-            _logger.LogInformation("auth/Create");
+            _logger.LogInformation("auth/CreateAdmin");
             var newUser = new User() {Email = registerUser.Email, UserName = registerUser.Name};
 
             var isCreated = await _userManager.CreateAsync(newUser, registerUser.Password);
@@ -46,7 +46,7 @@ namespace SpotiWish_back.Controllers
                 await _userManager.AddToRoleAsync(newUser, "admin");
                 return Ok(newUser);
             } 
-
+            _logger.LogError("Can't create");
             return BadRequest(new AuthResponse
             {
                 Result = false,
@@ -58,7 +58,7 @@ namespace SpotiWish_back.Controllers
         [Route("auth/Register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserDTO registerUser)
         {
-            _logger.LogInformation("auth/Create");
+            _logger.LogInformation("auth/Register");
             var newUser = new User() {Email = registerUser.Email, UserName = registerUser.Name};
 
             var isCreated = await _userManager.CreateAsync(newUser, registerUser.Password);
@@ -68,9 +68,10 @@ namespace SpotiWish_back.Controllers
                 await _userManager.AddToRoleAsync(newUser, "user");
                 return Ok(newUser);
             } 
-
+            _logger.LogError("Can't create");
             return BadRequest(new AuthResponse
             {
+                
                 Result = false,
                 Message = string.Join(Environment.NewLine, isCreated.Errors.Select(x => x.Description).ToList())
             });
