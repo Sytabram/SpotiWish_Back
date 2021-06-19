@@ -1,9 +1,9 @@
 # SpotiWish_Back
 Examen
 
-Compte Administrateur par défaut : 
-Username : SuperAdmin
-Password : Admin12345
+Compte Administrateur par défaut 
+1) Username : SuperAdmin
+2) Password : Admin12345
 
 Pour lancer : 
 
