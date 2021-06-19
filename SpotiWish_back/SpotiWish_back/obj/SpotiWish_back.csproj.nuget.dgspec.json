@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\EPSIC\\ExamCFCS6\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj": {}
+    "C:\\Users\\Antoine\\RiderProjects\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj": {}
   },
   "projects": {
-    "C:\\EPSIC\\ExamCFCS6\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj": {
+    "C:\\Users\\Antoine\\RiderProjects\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\EPSIC\\ExamCFCS6\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
+        "projectUniqueName": "C:\\Users\\Antoine\\RiderProjects\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
         "projectName": "SpotiWish_back",
-        "projectPath": "C:\\EPSIC\\ExamCFCS6\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
-        "packagesPath": "C:\\Users\\noezw\\.nuget\\packages\\",
-        "outputPath": "C:\\EPSIC\\ExamCFCS6\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\obj\\",
+        "projectPath": "C:\\Users\\Antoine\\RiderProjects\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\SpotiWish_back.csproj",
+        "packagesPath": "C:\\Users\\Antoine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Antoine\\RiderProjects\\SpotiWish_Back\\SpotiWish_back\\SpotiWish_back\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\noezw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Antoine\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\noezw\\.dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
