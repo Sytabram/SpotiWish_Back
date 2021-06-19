@@ -66,6 +66,7 @@ namespace SpotiWish_back.Repositories
             return await _context.Musics
                 .Include(x=>x.Playlists)
                 .Include(x=>x.Albums)
+                .Include(x=>x.Author)
                 .ToListAsync();
         }
         public async Task<List<Music>> Get10Music()
@@ -73,6 +74,7 @@ namespace SpotiWish_back.Repositories
             return await _context.Musics
                 .Include(x=>x.Playlists)
                 .Include(x=>x.Albums)
+                .Include(x=>x.Author)
                 .Take(10)
                 .ToListAsync();
         }
