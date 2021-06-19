@@ -2,8 +2,8 @@
 Examen
 
 Compte Administrateur par défaut : 
-  Username : SuperAdmin
-  Password : Admin12345
+Username : SuperAdmin
+Password : Admin12345
 
 Pour lancer : 
 
